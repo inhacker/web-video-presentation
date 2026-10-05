@@ -1,0 +1,259 @@
+/* ─── Chapter 1 · hook ─── prefix hk- ─────────────────────────────── */
+
+.hk-scene {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+.hk-title {
+  font-family: var(--font-display-en);
+  font-weight: 800;
+  font-size: 92px;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  animation: hk-rise 600ms var(--ease-quart) both;
+}
+.hk-title em { font-style: normal; color: var(--accent); }
+.hk-tag {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+/* ─── shared: the patient chart ─── */
+.hk-chart {
+  position: relative;
+  width: 400px;
+  padding: 36px 40px 40px;
+  border-radius: var(--r-card);
+  background: var(--surface-2);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.hk-chart-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.hk-chart-name { font-family: var(--font-body); font-weight: 700; font-size: 32px; color: var(--text); }
+.hk-line {
+  height: 14px;
+  border-radius: 7px;
+  background: var(--rule);
+  width: var(--w);
+}
+
+/* ─── step 0 · a whole chart becomes three lines ─── */
+.hk-sum-row { display: flex; align-items: center; gap: 56px; }
+.hk-s0 .hk-chart { animation: hk-rise 500ms var(--ease-quart) 200ms both; }
+.hk-s0 .hk-line { animation: hk-squeeze 500ms var(--ease-soft) both; animation-delay: var(--d); }
+.hk-arrow {
+  width: 160px;
+  height: 40px;
+  overflow: visible;
+}
+.hk-arrow path { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.hk-s0 .hk-arrow path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: hk-draw 500ms var(--ease-quart) 1700ms forwards; }
+.hk-summary {
+  width: 640px;
+  padding: 40px 48px;
+  border-radius: var(--r-card);
+  background: var(--surface-2);
+  box-shadow: var(--card-shadow);
+  border: 3px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  animation: hk-pop 500ms var(--ease-overshoot) 2200ms both;
+}
+.hk-summary-head { display: flex; align-items: center; gap: 16px; }
+.hk-ai-dot {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--accent);
+  color: var(--surface-2);
+  font-family: var(--font-display-en);
+  font-weight: 800;
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+}
+.hk-sum-line {
+  font-family: var(--font-body);
+  font-size: 34px;
+  line-height: 1.25;
+  color: var(--text);
+  clip-path: inset(0 100% 0 0);
+  animation: hk-type 600ms steps(24, end) both;
+  animation-delay: var(--d);
+}
+.hk-sum-line b { color: var(--accent); font-weight: 700; }
+
+/* ─── step 1 · blocked at the chatbot ─── */
+.hk-block-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 560px;
+  padding-right: 60px; /* keep clear of the theme's pill ribbon */
+}
+.hk-s1 .hk-chart { width: 320px; animation: hk-push 1600ms var(--ease-quart) 300ms both; }
+.hk-s1 .hk-line { height: 12px; }
+.hk-barrier {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 110px;
+  width: 0;
+  border-left: 5px dashed var(--text-mute);
+  animation: hk-fade 300ms var(--ease-soft) 1500ms both;
+}
+.hk-lock {
+  position: absolute;
+  left: 50%;
+  top: 225px;
+  width: 132px;
+  height: 132px;
+  margin: -66px 0 0 -66px;
+  border-radius: 50%;
+  background: var(--text);
+  display: grid;
+  place-items: center;
+  animation: hk-pop 450ms var(--ease-overshoot) 1900ms both;
+}
+.hk-lock svg { width: 64px; height: 64px; overflow: visible; }
+.hk-lock path, .hk-lock rect { fill: none; stroke: var(--surface-2); stroke-width: 7; stroke-linecap: round; }
+.hk-chat {
+  width: 520px;
+  border-radius: var(--r-card);
+  background: var(--surface-2);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  animation: hk-rise 500ms var(--ease-quart) 100ms both;
+}
+.hk-chat-bar {
+  padding: 22px 32px;
+  background: var(--surface-3);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--text-2);
+}
+.hk-chat-body { padding: 36px 32px; display: flex; flex-direction: column; gap: 20px; }
+.hk-bubble {
+  align-self: flex-start;
+  padding: 18px 26px;
+  border-radius: 22px;
+  background: var(--surface-3);
+  font-family: var(--font-body);
+  font-size: 28px;
+  color: var(--text-2);
+}
+.hk-input {
+  margin-top: 28px;
+  padding: 20px 26px;
+  border-radius: 18px;
+  border: 2px solid var(--rule);
+  font-family: var(--font-body);
+  font-size: 26px;
+  color: var(--text-faint);
+}
+.hk-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 36px;
+  color: var(--text);
+  animation: hk-fade 400ms var(--ease-soft) 2500ms both;
+}
+
+/* ─── steps 2–3 · the hospital wall ─── */
+.hk-wall-row { display: flex; align-items: center; gap: 96px; }
+.hk-wall-svg { width: 980px; height: 620px; overflow: visible; flex: 0 0 auto; }
+.hk-wall {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 8;
+  stroke-linejoin: round;
+}
+.hk-s2 .hk-wall {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  fill-opacity: 0;
+  animation: hk-draw 1100ms var(--ease-quart) 300ms forwards, hk-fill 500ms var(--ease-soft) 1200ms forwards;
+}
+.hk-wall-label {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  letter-spacing: 0.14em;
+  fill: var(--accent);
+}
+.hk-house { fill: var(--surface-2); stroke: var(--text); stroke-width: 5; stroke-linejoin: round; }
+.hk-cross { fill: var(--accent); }
+.hk-file { fill: var(--surface-2); stroke: var(--text-2); stroke-width: 4; stroke-linejoin: round; }
+.hk-file-line { stroke: var(--text-faint); stroke-width: 4; stroke-linecap: round; }
+.hk-file-g { transform-box: fill-box; transform-origin: center; }
+.hk-s2 .hk-file-g { animation: hk-pop 400ms var(--ease-overshoot) both; animation-delay: var(--d); }
+.hk-s2 .hk-file-runner { animation: hk-pop 400ms var(--ease-overshoot) 2100ms both, hk-bounce 1400ms var(--ease-soft) 3000ms both; }
+.hk-side { display: flex; flex-direction: column; gap: 22px; max-width: 560px; }
+.hk-side-big {
+  font-family: var(--font-display-en);
+  font-weight: 800;
+  font-size: 64px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.hk-side-big em { font-style: normal; color: var(--accent); }
+.hk-side-sub { font-family: var(--font-body); font-size: 32px; line-height: 1.35; color: var(--text-2); }
+.hk-s2 .hk-side-big { animation: hk-rise 500ms var(--ease-quart) 4400ms both; }
+.hk-s2 .hk-side-sub { animation: hk-rise 500ms var(--ease-quart) 4800ms both; }
+
+/* step 3 · the AI walks in */
+.hk-ai-g { transform-box: fill-box; transform-origin: center; }
+.hk-s3 .hk-ai-g { animation: hk-enter 1300ms var(--ease-quart) 300ms both; }
+.hk-ai-box { fill: var(--accent); }
+.hk-ai-text { font-family: var(--font-display-en); font-weight: 800; font-size: 52px; fill: var(--surface-2); }
+.hk-s3 .hk-title { font-size: 84px; }
+
+/* ─── keyframes ─── */
+@keyframes hk-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes hk-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hk-pop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
+@keyframes hk-draw { to { stroke-dashoffset: 0; } }
+@keyframes hk-fill { to { fill-opacity: 1; } }
+@keyframes hk-type { to { clip-path: inset(0 0 0 0); } }
+@keyframes hk-squeeze {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0.25; transform: scaleX(0.35); transform-origin: right center; }
+}
+@keyframes hk-push {
+  0% { opacity: 0; transform: translateX(-80px); }
+  20% { opacity: 1; transform: translateX(0); }
+  80% { transform: translateX(400px); }
+  88% { transform: translateX(370px); }
+  100% { opacity: 1; transform: translateX(384px); }
+}
+@keyframes hk-bounce {
+  0% { transform: translate(0, 0); }
+  45% { transform: translate(250px, 0); }
+  60% { transform: translate(214px, 0); }
+  100% { transform: translate(0, 0); }
+}
+@keyframes hk-enter {
+  from { opacity: 0; transform: translateX(560px); }
+  25% { opacity: 1; }
+  to { opacity: 1; transform: none; }
+}

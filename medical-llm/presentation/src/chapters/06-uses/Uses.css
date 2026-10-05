@@ -1,0 +1,223 @@
+/* ─── Chapter 6 · uses ─── prefix us- ─────────────────────────────── */
+
+.us-scene { display: flex; flex-direction: column; justify-content: center; gap: 56px; padding-right: 160px; }
+.us-title {
+  font-family: var(--font-display-en);
+  font-weight: 800;
+  font-size: 84px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  animation: us-rise 500ms var(--ease-quart) 100ms both;
+}
+.us-title em { font-style: normal; color: var(--accent); }
+.us-tag {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.us-paper {
+  position: relative;
+  border-radius: var(--r-card);
+  background: var(--surface-2);
+  box-shadow: var(--card-shadow);
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.us-paper > .us-tag { position: absolute; top: 18px; right: 26px; }
+.us-row-flow { display: flex; align-items: center; justify-content: center; gap: 36px; }
+.us-arrow { width: 110px; height: 40px; overflow: visible; flex: 0 0 auto; }
+.us-arrow path { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: us-draw 400ms var(--ease-quart) forwards; animation-delay: var(--d); }
+
+/* ─── step 0 · the question ─── */
+.us-hero {
+  font-family: var(--font-display-en);
+  font-weight: 800;
+  font-size: 150px;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: var(--text);
+}
+.us-hero span { display: inline-block; animation: us-pop 450ms var(--ease-overshoot) both; animation-delay: var(--d); }
+.us-hero .us-acc { color: var(--accent); }
+.us-s0 { gap: 28px; }
+.us-underline { width: 1480px; height: 30px; overflow: visible; }
+.us-underline path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: us-draw 550ms var(--ease-quart) 800ms forwards;
+}
+
+
+/* ─── step 1 · messy note → clean summary ─── */
+.us-note {
+  width: 540px;
+  flex: 0 0 auto;
+  gap: 30px;
+  padding-top: 64px;
+  transform: rotate(-6deg) translateY(10px);
+  animation: us-fade 300ms var(--ease-soft) both, us-straighten 650ms var(--ease-overshoot) 700ms forwards;
+}
+.us-scrawl { font-family: var(--font-mono); font-size: 34px; color: var(--text-2); transform: rotate(var(--r)); white-space: nowrap; }
+.us-summary { width: 800px; flex: 0 0 auto; gap: 0; padding: 56px 0 18px; border: 3px solid var(--accent); animation: us-pop 450ms var(--ease-overshoot) 1450ms both; }
+.us-summary > .us-label { position: absolute; top: 18px; left: 40px; }
+.us-label { font-family: var(--font-body); font-weight: 700; font-size: 26px; color: var(--accent); }
+.us-soap {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  align-items: center;
+  padding: 24px 40px;
+  border-top: 2px solid var(--rule);
+  animation: us-drop 400ms var(--ease-quart) both;
+  animation-delay: var(--d);
+}
+.us-soap-key { font-family: var(--font-mono); font-size: 26px; letter-spacing: 0.06em; color: var(--text-mute); }
+.us-soap-val { font-family: var(--font-body); font-weight: 700; font-size: 40px; color: var(--text); }
+
+
+/* ─── step 2 · drugs and doses lift out ─── */
+.us-rx { width: 680px; flex: 0 0 auto; padding-top: 60px; animation: us-fade 300ms var(--ease-soft) 200ms both; }
+.us-rx-text { font-family: var(--font-body); font-size: 36px; line-height: 1.6; color: var(--text-2); }
+.us-drug, .us-dose {
+  padding: 0 6px;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  animation-duration: 400ms;
+  animation-timing-function: var(--ease-quart);
+  animation-fill-mode: forwards;
+  animation-delay: var(--d);
+}
+.us-drug {
+  font-weight: 700;
+  color: var(--text);
+  background-image: linear-gradient(var(--accent-glow), var(--accent-glow));
+  background-position: left center;
+  background-size: 0% 100%;
+  animation-name: us-mark;
+}
+.us-dose {
+  color: var(--text);
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-position: left bottom;
+  background-size: 0% 5px;
+  animation-name: us-under;
+}
+.us-list { width: 700px; flex: 0 0 auto; gap: 18px; padding: 36px 40px; border: 3px solid var(--accent); animation: us-pop 400ms var(--ease-overshoot) 1600ms both; }
+.us-list-head { display: grid; grid-template-columns: 250px 1fr; }
+.us-list-head span { font-family: var(--font-mono); font-size: 24px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mute); }
+.us-med {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  align-items: center;
+  padding: 24px 0;
+  border-top: 2px solid var(--rule);
+  animation: us-lift 500ms var(--ease-overshoot) both;
+  animation-delay: var(--d);
+}
+.us-med-name { font-family: var(--font-display-en); font-weight: 800; font-size: 40px; letter-spacing: -0.01em; color: var(--accent); }
+.us-med-dose { font-family: var(--font-body); font-size: 30px; white-space: nowrap; color: var(--text); }
+
+
+/* ─── step 3 · chatbot, then trial rules ─── */
+.us-pair { display: flex; align-items: stretch; gap: 64px; }
+.us-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 28px; }
+.us-col-name { font-family: var(--font-display-en); font-weight: 800; font-size: 56px; line-height: 1.1; letter-spacing: -0.02em; color: var(--text); }
+.us-col-name em { font-style: normal; color: var(--accent); }
+.us-chat-col { animation: us-rise 500ms var(--ease-quart) 100ms both, us-dim 400ms var(--ease-soft) 3300ms forwards; }
+.us-trial-col { animation: us-slide 500ms var(--ease-quart) 3300ms both; }
+.us-chat { flex: 1; min-height: 460px; gap: 36px; padding-top: 60px; justify-content: center; }
+.us-bubble {
+  max-width: 88%;
+  padding: 22px 30px;
+  border-radius: 28px;
+  font-family: var(--font-body);
+  font-size: 38px;
+  line-height: 1.3;
+}
+.us-ask { align-self: flex-end; background: var(--surface-3); color: var(--text); border-bottom-right-radius: 8px; animation: us-pop 400ms var(--ease-overshoot) 500ms both; }
+.us-reply { position: relative; align-self: flex-start; background: var(--accent-soft); border: 3px solid var(--accent); color: var(--text); border-bottom-left-radius: 8px; animation: us-pop 400ms var(--ease-overshoot) 1000ms both; }
+.us-reply-text { display: block; clip-path: inset(0 100% 0 0); animation: us-type 900ms steps(28, end) 1800ms forwards; }
+.us-dots { position: absolute; left: 30px; top: 50%; translate: 0 -50%; display: flex; gap: 10px; }
+.us-dots i { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); opacity: 0; animation: us-blink 350ms var(--ease-soft) 2; animation-delay: var(--d); }
+.us-rules { flex: 1; gap: 0; padding: 64px 0 16px; justify-content: center; }
+.us-rules > .us-label { position: absolute; top: 18px; left: 40px; }
+.us-rule {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 34px 40px;
+  border-top: 2px solid var(--rule);
+  font-family: var(--font-body);
+  font-size: 36px;
+  color: var(--text);
+}
+.us-stamp {
+  flex: 0 0 auto;
+  padding: 8px 20px;
+  border-radius: 12px;
+  border: 3px solid var(--accent);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  animation: us-stamp 350ms var(--ease-overshoot) both;
+  animation-delay: var(--d);
+}
+.us-stamp.is-out { border-color: var(--text-mute); color: var(--text-mute); }
+
+
+/* ─── step 4 · runs on a regular computer ─── */
+.us-laptop-row { display: flex; align-items: center; gap: 72px; }
+.us-laptop { width: 760px; height: 500px; overflow: visible; flex: 0 0 auto; }
+.us-lap-line { fill: none; stroke: var(--text); stroke-width: 6; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: us-draw 1100ms var(--ease-soft) 200ms forwards; }
+.us-lap-screen { fill: var(--accent-soft); opacity: 0; animation: us-fade 400ms var(--ease-soft) 1300ms forwards; }
+.us-lap-chip { transform-box: fill-box; transform-origin: center; animation: us-chip 650ms var(--ease-overshoot) 1500ms both; }
+.us-lap-chip rect { fill: var(--accent); }
+.us-lap-chip text { font-family: var(--font-display-en); font-weight: 800; font-size: 44px; fill: var(--surface-2); }
+.us-copy { display: flex; flex-direction: column; gap: 36px; flex: 1; min-width: 0; }
+.us-s4 .us-title { animation-delay: 900ms; }
+.us-nogpu { display: flex; align-items: center; gap: 28px; animation: us-rise 400ms var(--ease-quart) 3300ms both; }
+.us-nogpu svg { width: 140px; height: 84px; overflow: visible; flex: 0 0 auto; }
+.us-gpu-body { fill: var(--surface-2); stroke: var(--text-mute); stroke-width: 5; }
+.us-gpu-fan { fill: none; stroke: var(--text-mute); stroke-width: 5; }
+.us-strike { fill: none; stroke: var(--accent); stroke-width: 9; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: us-draw 450ms var(--ease-quart) 3700ms forwards; }
+.us-nogpu span { font-family: var(--font-display-en); font-weight: 800; font-size: 46px; line-height: 1.1; letter-spacing: -0.02em; color: var(--text); }
+.us-def {
+  padding: 24px 32px;
+  border-radius: 20px;
+  background: var(--surface-3);
+  font-family: var(--font-body);
+  font-size: 30px;
+  line-height: 1.35;
+  color: var(--text-2);
+  animation: us-rise 500ms var(--ease-quart) 4100ms both;
+}
+.us-def b { color: var(--text); }
+
+/* ─── keyframes ─── */
+@keyframes us-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes us-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes us-pop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
+@keyframes us-draw { to { stroke-dashoffset: 0; } }
+@keyframes us-type { to { clip-path: inset(0 0 0 0); } }
+@keyframes us-slide { from { opacity: 0; transform: translateX(120px); } to { opacity: 1; transform: none; } }
+@keyframes us-drop { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: none; } }
+@keyframes us-lift { from { opacity: 0; transform: translateY(70px) scale(0.9); } to { opacity: 1; transform: none; } }
+@keyframes us-mark { to { background-size: 100% 100%; } }
+@keyframes us-dim { to { opacity: 0.4; transform: scale(0.96); } }
+@keyframes us-straighten { to { transform: none; } }
+@keyframes us-under { to { background-size: 100% 5px; } }
+@keyframes us-stamp { from { opacity: 0; transform: scale(1.8) rotate(-8deg); } to { opacity: 1; transform: rotate(-3deg); } }
+@keyframes us-chip { from { opacity: 0; transform: translateY(-260px); } to { opacity: 1; transform: none; } }
+@keyframes us-blink { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }

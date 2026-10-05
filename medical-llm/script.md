@@ -1,337 +1,145 @@
-Your hospital probably can't send patient records to GPT 5.5. Not without a lot of paperwork.
+Imagine asking an AI to sum up a patient's whole chart. In seconds.
 
 ---
 
-So what if the model you're allowed to run, on your own servers, scored higher on medical benchmarks?
+There's a catch. You can't just paste patient records into ChatGPT.
 
 ---
 
-That's the claim John Snow Labs is making with two new medical LLMs. Let's check their numbers.
+Patient data is private, and protected by law. Most hospitals won't let it leave their own computers.
 
 ---
 
-We'll also look at where their own charts show them losing.
+So what if the AI came to the data instead?
 
 ---
 
-In healthcare, they argue, a specialized model beats a general one.
+That's the idea behind John Snow Labs' Medical LLMs.
 
 ---
 
-They point to academic papers and industry benchmarks that keep showing this.
+An LLM is the kind of AI behind ChatGPT. You give it text. It reads, writes, and answers.
 
 ---
 
-So they built a pair. Medical LLM Medium, and Medical LLM Small.
+These ones were built for medicine. Clinical notes, research papers, diagnoses.
 
 ---
 
-Both read text and images, and both ship with a fixed John Snow Labs identity.
+And they run on the hospital's own computers, or its private cloud. The data never has to leave.
 
 ---
 
-The real pitch is where they run. GPT, Claude and Gemini live in someone else's cloud. These can sit on-premise, or in your private cloud.
+They come in two sizes. Medium is the most powerful one.
 
 ---
 
-That keeps things HIPAA-friendly. And they say you don't give up frontier-level medical accuracy to get it.
+Small fits on a single graphics card. That's the chip that runs AI.
 
 ---
 
-The target work is clinical reasoning and diagnostics.
+But is a private AI as smart as the big names?
 
 ---
 
-Plus reading medical research, and even genetic analysis.
+To find out, you give every AI the same test. People call these tests benchmarks.
 
 ---
 
-Start with hardware. Medium is the flagship. It wants about 67 gigabytes of GPU memory.
+One test checks real clinical work. Writing notes, reasoning, safety, talking with patients.
 
 ---
 
-Small needs about 25. That fits on one commodity GPU.
+Medical LLM Medium went head to head with GPT, Claude, and Gemini.
 
 ---
 
-Both take a 262K-token context. That's hundreds of pages of patient history in a single prompt.
+It came out number one overall.
 
 ---
 
-Those memory numbers assume half-precision weights. They also reserve room for the cache at full context. 16 gigs for Medium, 8 for Small.
+Out of thirteen tasks, it scored best on twelve.
 
 ---
 
-Medium splits across 2, 4, or 8 GPUs. Small can also run on just one.
+In medicine, smart isn't enough. The AI also has to be careful.
 
 ---
 
-You can deploy on-premise, or on AWS, Azure, Databricks, and Snowflake.
+One task hides mistakes inside medical notes. The AI has to find them.
 
 ---
 
-Their own summary goes like this. Small beats much bigger general models on MedHELM. Medium is their best, number one in the comparison.
+Medium scored best. About fifteen points ahead of the next model.
 
 ---
 
-There's also a whole shelf of smaller models. Most are one to ten billion parameters.
+AI sometimes makes things up, and sounds completely sure. That's called a hallucination.
 
 ---
 
-They're quantized. Many run on a plain CPU, no GPU needed. A GPU just makes them faster.
+On a hallucination test, both Medium and Small ranked first.
 
 ---
 
-The biggest is MedM v3, at fourteen billion parameters. It needs 24 gigs of GPU memory. It handles summaries, Q&A, RAG, and chat.
+Then they tried to trip it up, with a thousand tricky questions.
 
 ---
 
-Then come the specialists. The NER models pull medical terms out of text and link them.
+Medium handled about 94 out of 100 safely. GPT 5.5 managed 85.
 
 ---
 
-One version of NER reads clinical trial eligibility rules.
+A lot of medical information isn't typed text. It's scanned forms, faxes, and tables.
 
 ---
 
-Text2SOAP turns a messy note into a SOAP summary. Subjective, Objective, Assessment, Plan.
+So there's a second family, called Vision OCR. It looks at a page and turns it into text a computer can use.
 
 ---
 
-There's a RAG model, built only to be the LLM inside a retrieval pipeline.
+It can point to exactly where every word sits on the page.
 
 ---
 
-And two vision models, at 3B and 2B. They read images and pull out structured medical entities.
+And it can turn a whole form into neat, organized data, ready for your systems.
 
 ---
 
-They plug into the Healthcare NLP library like any other component. And they're covered by that same license.
+On reading tables, it beat every big-name model they tested. On one graphics card.
 
 ---
 
-Context windows run from 32K up to 131K tokens. There's a Colab notebook if you want to poke at them.
+So what could you actually build with this?
 
 ---
 
-Now the benchmarks, starting with OpenMed.
+A tool that turns a messy doctor's note into a clean summary.
 
 ---
 
-It's eight multiple-choice test sets. MedQA, PubMedQA, and six medical subjects from MMLU.
+One that pulls out the drugs and doses, automatically.
 
 ---
 
-Medical LLM Medium averages 93.99.
+A chatbot that answers medical questions. Or one that reads the rules for joining a clinical trial.
 
 ---
 
-GPT 5.5 is at 93.28, Claude Opus 4.8 at 93.21, and Gemini 3.5 Flash at 92.94.
+Some of the smaller models even run on a regular computer. No graphics card needed.
 
 ---
 
-So Medium is on top. By about seven tenths of a point.
+Here's the honest part. These scores come from John Snow Labs' own tests.
 
 ---
 
-Look closer, and Medium trails on four of the eight subjects. On College Biology, the frontier models hit 99.3. Medium gets 94.3.
+The best proof is your own data. Try it on the work you actually do.
 
 ---
 
-On Medical Genetics, the frontier models score a perfect 100. Medium gets 99.
+Start with their Colab notebook. It runs right in your browser.
 
 ---
 
-Where Medium really pulls ahead is PubMedQA. It scores 82, while the frontier sits between 74 and 76.5.
-
----
-
-On MedQA the lead is smaller, 96.2 against 95.
-
----
-
-And Small? It averages 90.63. For a model that fits on one GPU, that's close.
-
----
-
-OpenMed is exam questions. MedHELM is closer to real clinical work.
-
----
-
-It has thirteen tasks. They cover documentation, medical coding, safety, patient dialogue, and reasoning.
-
----
-
-The headline score is mean win rate. Roughly, how often a model beats the others, task by task.
-
----
-
-Medium gets 77.78. That's the best of every model tested. GPT 5.5 is next, at 73.56.
-
----
-
-Medium takes the top score on 12 of the 13 tasks. Some of those wins are by a tenth of a point.
-
----
-
-Its biggest gap is clinical error detection. On Medec, Medium scores 85. The best frontier model gets 70. That's 15 points.
-
----
-
-Medication questions, plus 9.5. Research reading on PubMedQA, plus 6.
-
----
-
-On Med-Hallu, the hallucination test, Medium scores 96. Small scores 95. The frontier tops out at 92.
-
----
-
-So which task did it lose? RaceBias. Medium gets 88. All three frontier models get 91.
-
----
-
-If bias testing matters for your rollout, remember that one.
-
----
-
-Small lands at 70.95. That's under all three frontier models. So that line about beating bigger models needs an asterisk.
-
----
-
-Now step back and look at averages.
-
----
-
-On OpenMed, the three frontier models average 93.14. Medium gets 93.99.
-
----
-
-On MedHELM, the frontier averages 72.41. Medium gets 77.78. That gap is much wider.
-
----
-
-Then there's red-teaming. A thousand adversarial questions, across 148 medical categories.
-
----
-
-Medium passed about 940. That's 94 percent.
-
----
-
-The frontier trails. GPT 5.5 passed 850, Claude Opus 4.8 passed 830, and Gemini 3.5 Flash passed 790.
-
----
-
-Their read on it: a smaller model came out as the most robust in this test. Small's result isn't reported.
-
----
-
-On hallucination, both of their models beat every frontier model. The vendor calls that the metric that decides clinical safety.
-
----
-
-The same page covers a second family. Vision OCR.
-
----
-
-Same idea here. For document pipelines, a task-specific OCR model should beat a general one.
-
----
-
-Two jobs matter most. Tie every word to an exact box on the page. And turn a page into clean, schema-valid JSON.
-
----
-
-Vision OCR LLM does the first job. It's the grounding specialist. About 6 gigs of GPU memory, with a 32K context.
-
----
-
-Vision OCR Structured LLM does the second. Document in, JSON out. About 32 gigs, with a 128K context.
-
----
-
-Those are worst-case numbers at max context. A typical OCR page is only around 8K tokens.
-
----
-
-At that size, Vision OCR LLM needs about 3 gigs, and the Structured one about 19. One GPU either way.
-
----
-
-And again, the point is privacy. Patient records, PII and PHI stay inside your own infrastructure.
-
----
-
-Take tables. They pulled 50 from PubTabNet, balanced from simple to very dense.
-
----
-
-The metric is TEDS-S. It checks whether the table's structure came out right.
-
----
-
-Vision OCR LLM scores 0.784. The best frontier model, GPT 5.5, gets 0.704. That's eight points clear.
-
----
-
-For grounding, they used all 50 test forms from FUNSD.
-
----
-
-Each predicted box has to match a real region, with an overlap score of at least 0.78.
-
----
-
-Then they check how accurately the text inside that box was read.
-
----
-
-Vision OCR LLM gets 0.938. That's ahead of Claude at 0.921, and GPT at 0.848.
-
----
-
-But Gemini scores higher, at 0.968.
-
----
-
-Their explanation: this metric only rewards tightly matched regions. So a high score might cover just part of the page.
-
----
-
-They say theirs covers the full page. But they don't publish coverage numbers.
-
----
-
-And for JSON, they used 100 documents from the OmniOCR benchmark.
-
----
-
-Vision OCR Structured LLM gets 0.708 field accuracy. That's ahead of GPT at 0.623, and Claude at 0.643.
-
----
-
-Gemini wins this one too, at 0.813.
-
----
-
-The OCR tests ran on their own harness. Same prompt for every model, and zero failed documents.
-
----
-
-So, on medical text, Medium beats the frontier on both benchmarks. The wide lead is on MedHELM, the clinical-work one.
-
----
-
-On OCR, it's mixed. Tables are a clear win. On grounding and JSON, Gemini is still ahead.
-
----
-
-Where they run hasn't changed. Inside your own walls, and for most of them, on a single GPU.
-
----
-
-Keep in mind these are the vendor's own numbers. If you're choosing for a hospital, run the same tests on your own data.
-
----
-
-The docs link is in the description. Grab the Colab notebook and try the small models yourself.
+Then book a call with their team for a live demo. Links are in the description.

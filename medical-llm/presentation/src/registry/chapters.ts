@@ -1,28 +1,18 @@
 import type { ChapterDef } from "./types";
-import Coldopen from "../chapters/01-coldopen/Coldopen";
-import { narrations as coldopenNarrations } from "../chapters/01-coldopen/narrations";
-import WhyPrivate from "../chapters/02-why-private/WhyPrivate";
-import { narrations as whyPrivateNarrations } from "../chapters/02-why-private/narrations";
-import FlagshipPair from "../chapters/03-flagship-pair/FlagshipPair";
-import { narrations as flagshipPairNarrations } from "../chapters/03-flagship-pair/narrations";
-import SmallModels from "../chapters/04-small-models/SmallModels";
-import { narrations as smallModelsNarrations } from "../chapters/04-small-models/narrations";
-import Openmed from "../chapters/05-openmed/Openmed";
-import { narrations as openmedNarrations } from "../chapters/05-openmed/narrations";
-import Medhelm from "../chapters/06-medhelm/Medhelm";
-import { narrations as medhelmNarrations } from "../chapters/06-medhelm/narrations";
-import MedhelmEdges from "../chapters/07-medhelm-edges/MedhelmEdges";
-import { narrations as medhelmEdgesNarrations } from "../chapters/07-medhelm-edges/narrations";
-import Safety from "../chapters/08-safety/Safety";
-import { narrations as safetyNarrations } from "../chapters/08-safety/narrations";
-import VisionOcr from "../chapters/09-vision-ocr/VisionOcr";
-import { narrations as visionOcrNarrations } from "../chapters/09-vision-ocr/narrations";
-import OcrTablesGrounding from "../chapters/10-ocr-tables-grounding/OcrTablesGrounding";
-import { narrations as ocrTablesGroundingNarrations } from "../chapters/10-ocr-tables-grounding/narrations";
-import OcrJson from "../chapters/11-ocr-json/OcrJson";
-import { narrations as ocrJsonNarrations } from "../chapters/11-ocr-json/narrations";
-import Takeaway from "../chapters/12-takeaway/Takeaway";
-import { narrations as takeawayNarrations } from "../chapters/12-takeaway/narrations";
+import Hook from "../chapters/01-hook/Hook";
+import { narrations as hookNarrations } from "../chapters/01-hook/narrations";
+import Meet from "../chapters/02-meet/Meet";
+import { narrations as meetNarrations } from "../chapters/02-meet/narrations";
+import Smart from "../chapters/03-smart/Smart";
+import { narrations as smartNarrations } from "../chapters/03-smart/narrations";
+import Safe from "../chapters/04-safe/Safe";
+import { narrations as safeNarrations } from "../chapters/04-safe/narrations";
+import Paperwork from "../chapters/05-paperwork/Paperwork";
+import { narrations as paperworkNarrations } from "../chapters/05-paperwork/narrations";
+import Uses from "../chapters/06-uses/Uses";
+import { narrations as usesNarrations } from "../chapters/06-uses/narrations";
+import Start from "../chapters/07-start/Start";
+import { narrations as startNarrations } from "../chapters/07-start/narrations";
 
 /**
  * Order = order of presentation.
@@ -37,75 +27,45 @@ import { narrations as takeawayNarrations } from "../chapters/12-takeaway/narrat
  */
 export const CHAPTERS: ChapterDef[] = [
   {
-    id: "coldopen",
-    title: "Can't leave the building",
-    narrations: coldopenNarrations,
-    Component: Coldopen,
+    id: "hook",
+    title: "The catch",
+    narrations: hookNarrations,
+    Component: Hook,
   },
   {
-    id: "why-private",
-    title: "Why specialized, why private",
-    narrations: whyPrivateNarrations,
-    Component: WhyPrivate,
+    id: "meet",
+    title: "Meet the Medical LLMs",
+    narrations: meetNarrations,
+    Component: Meet,
   },
   {
-    id: "flagship-pair",
-    title: "Hardware and deployment",
-    narrations: flagshipPairNarrations,
-    Component: FlagshipPair,
+    id: "smart",
+    title: "Is it smart enough?",
+    narrations: smartNarrations,
+    Component: Smart,
   },
   {
-    id: "small-models",
-    title: "The small-model shelf",
-    narrations: smallModelsNarrations,
-    Component: SmallModels,
+    id: "safe",
+    title: "Smart, and careful",
+    narrations: safeNarrations,
+    Component: Safe,
   },
   {
-    id: "openmed",
-    title: "OpenMed",
-    narrations: openmedNarrations,
-    Component: Openmed,
+    id: "paperwork",
+    title: "It reads paperwork too",
+    narrations: paperworkNarrations,
+    Component: Paperwork,
   },
   {
-    id: "medhelm",
-    title: "MedHELM",
-    narrations: medhelmNarrations,
-    Component: Medhelm,
+    id: "uses",
+    title: "What you could build",
+    narrations: usesNarrations,
+    Component: Uses,
   },
   {
-    id: "medhelm-edges",
-    title: "MedHELM: edges and gaps",
-    narrations: medhelmEdgesNarrations,
-    Component: MedhelmEdges,
-  },
-  {
-    id: "safety",
-    title: "Averages and red-teaming",
-    narrations: safetyNarrations,
-    Component: Safety,
-  },
-  {
-    id: "vision-ocr",
-    title: "Vision OCR",
-    narrations: visionOcrNarrations,
-    Component: VisionOcr,
-  },
-  {
-    id: "ocr-tables-grounding",
-    title: "OCR: tables and grounding",
-    narrations: ocrTablesGroundingNarrations,
-    Component: OcrTablesGrounding,
-  },
-  {
-    id: "ocr-json",
-    title: "OCR: structured JSON",
-    narrations: ocrJsonNarrations,
-    Component: OcrJson,
-  },
-  {
-    id: "takeaway",
-    title: "Takeaway",
-    narrations: takeawayNarrations,
-    Component: Takeaway,
+    id: "start",
+    title: "Try it yourself",
+    narrations: startNarrations,
+    Component: Start,
   },
 ];

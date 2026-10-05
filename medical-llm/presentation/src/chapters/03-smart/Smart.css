@@ -1,0 +1,214 @@
+/* ─── Chapter 3 · smart ─── prefix sm- ─────────────────────────────── */
+
+.sm-scene { display: flex; flex-direction: column; justify-content: center; gap: 64px; padding-right: 160px; }
+.sm-title {
+  font-family: var(--font-display-en);
+  font-weight: 800;
+  font-size: 88px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  animation: sm-rise 500ms var(--ease-quart) both;
+}
+.sm-title em { font-style: normal; color: var(--accent); }
+.sm-tag {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+/* ─── step 0 · small private AI vs the big names ─── */
+.sm-vs { display: flex; align-items: center; gap: 72px; }
+.sm-mine {
+  width: 200px;
+  height: 200px;
+  border-radius: 44px;
+  background: var(--accent);
+  color: var(--surface-2);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: var(--font-display-en);
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 1.15;
+  animation: sm-pop 400ms var(--ease-overshoot) 200ms both;
+}
+.sm-q {
+  font-family: var(--font-display-en);
+  font-weight: 800;
+  font-size: 160px;
+  color: var(--text-faint);
+  animation: sm-wobble 700ms var(--ease-overshoot) 1500ms both;
+}
+.sm-bigs { display: flex; gap: 32px; }
+.sm-big {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: var(--surface-3);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display-en);
+  font-weight: 800;
+  font-size: 44px;
+  color: var(--text-2);
+  animation: sm-pop 400ms var(--ease-overshoot) both;
+  animation-delay: var(--d);
+}
+
+/* ─── step 1 · same test for everyone ─── */
+.sm-exam-row { display: flex; gap: 48px; align-items: flex-end; }
+.sm-exam {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+.sm-paper {
+  width: 280px;
+  height: 340px;
+  border-radius: 18px;
+  background: var(--surface-2);
+  box-shadow: var(--card-shadow);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: sm-deal 600ms var(--ease-quart) both;
+  animation-delay: var(--d);
+}
+.sm-paper-head { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.12em; color: var(--accent); }
+.sm-paper-line { height: 12px; border-radius: 6px; background: var(--rule); }
+.sm-paper-box { display: flex; gap: 10px; }
+.sm-paper-box span { width: 26px; height: 26px; border-radius: 50%; border: 3px solid var(--rule); }
+.sm-who { font-family: var(--font-body); font-weight: 700; font-size: 32px; color: var(--text-2); }
+.sm-who.is-us { color: var(--accent); }
+.sm-def {
+  align-self: flex-start;
+  padding: 22px 32px;
+  border-radius: 20px;
+  background: var(--surface-3);
+  font-family: var(--font-body);
+  font-size: 34px;
+  color: var(--text-2);
+  animation: sm-rise 500ms var(--ease-quart) 3800ms both;
+}
+.sm-def b { color: var(--text); }
+
+/* ─── step 2 · real clinical work ─── */
+.sm-work { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.sm-task {
+  padding: 40px 36px;
+  border-radius: var(--r-card);
+  background: var(--surface-2);
+  border: 3px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  opacity: 0.35;
+  animation: sm-on 450ms var(--ease-soft) forwards;
+  animation-delay: var(--d);
+}
+.sm-task svg { width: 96px; height: 96px; overflow: visible; }
+.sm-ico { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.sm-ico-fill { fill: var(--accent-soft); }
+.sm-task-name { font-family: var(--font-display-en); font-weight: 800; font-size: 40px; line-height: 1.1; color: var(--text); }
+.sm-s2 .sm-tag { animation: sm-rise 500ms var(--ease-quart) 1600ms both; }
+
+/* ─── step 3 · head to head ─── */
+.sm-lanes { display: flex; flex-direction: column; gap: 26px; }
+.sm-lane { display: grid; grid-template-columns: 380px 1fr; align-items: center; gap: 32px; }
+.sm-lane-name {
+  font-family: var(--font-display-en);
+  font-weight: 800;
+  font-size: 44px;
+  color: var(--text-2);
+  animation: sm-rise 400ms var(--ease-quart) both;
+  animation-delay: var(--d);
+}
+.sm-lane.is-us .sm-lane-name { color: var(--accent); }
+.sm-track { position: relative; height: 22px; border-radius: 11px; background: var(--surface-3); }
+.sm-runner {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 56px;
+  height: 56px;
+  margin-top: -28px;
+  border-radius: 50%;
+  background: var(--text-2);
+  animation: sm-pop 350ms var(--ease-overshoot) both;
+  animation-delay: var(--d);
+}
+.sm-lane.is-us .sm-runner { background: var(--accent); }
+.sm-flag {
+  position: absolute;
+  right: 0;
+  top: -56px;
+  font-family: var(--font-mono);
+  font-size: 24px;
+  letter-spacing: 0.14em;
+  color: var(--text-mute);
+  animation: sm-fade 400ms var(--ease-soft) 4400ms both;
+}
+.sm-finish { position: absolute; right: 0; top: -16px; bottom: -16px; border-right: 5px dashed var(--text-faint); animation: sm-fade 400ms var(--ease-soft) 4400ms both; }
+
+/* ─── step 4 · number one ─── */
+.sm-s4 .sm-lanes .sm-runner { animation: none; left: var(--to); margin-left: -28px; }
+.sm-s4 .sm-lane.is-us .sm-runner { animation: sm-dash 900ms var(--ease-quart) 100ms both; }
+.sm-s4 .sm-lane:not(.is-us) .sm-runner { animation: sm-jog 900ms var(--ease-quart) 100ms both; }
+.sm-one-row { display: flex; align-items: center; gap: 48px; }
+.sm-one {
+  font-family: var(--hero-num-font);
+  font-weight: var(--hero-num-weight);
+  letter-spacing: var(--hero-num-track);
+  font-size: 220px;
+  line-height: 0.9;
+  color: var(--accent);
+  animation: sm-pop 450ms var(--ease-overshoot) 100ms both;
+}
+.sm-one-sub { font-family: var(--font-display-en); font-weight: 800; font-size: 64px; color: var(--text); animation: sm-rise 400ms var(--ease-quart) 500ms both; }
+.sm-one-note { display: block; margin-top: 10px; font-family: var(--font-body); font-weight: 500; font-size: 30px; color: var(--text-mute); }
+
+/* ─── step 5 · 12 of 13 ─── */
+.sm-tally { display: flex; align-items: center; gap: 96px; }
+.sm-grid { display: grid; grid-template-columns: repeat(5, 120px); gap: 22px; }
+.sm-cell {
+  height: 120px;
+  border-radius: 28px;
+  border: 4px solid var(--rule);
+  background: var(--surface-2);
+  display: grid;
+  place-items: center;
+}
+.sm-cell.is-win { animation: sm-fill 260ms var(--ease-soft) forwards; animation-delay: var(--d); }
+.sm-cell.is-win svg { width: 48px; height: 48px; opacity: 0; animation: sm-fade 200ms var(--ease-soft) forwards; animation-delay: var(--d); }
+.sm-cell svg path { fill: none; stroke: var(--surface-2); stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+.sm-cell.is-open { border-style: dashed; }
+.sm-count {
+  font-family: var(--hero-num-font);
+  font-weight: var(--hero-num-weight);
+  letter-spacing: var(--hero-num-track);
+  font-size: 180px;
+  line-height: 0.9;
+  color: var(--text);
+  animation: sm-pop 400ms var(--ease-overshoot) 2200ms both;
+}
+.sm-count em { font-style: normal; color: var(--accent); }
+.sm-count-sub { font-family: var(--font-body); font-size: 36px; color: var(--text-2); animation: sm-rise 400ms var(--ease-quart) 2500ms both; }
+
+/* ─── keyframes ─── */
+@keyframes sm-rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes sm-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sm-pop { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+@keyframes sm-wobble { 0% { opacity: 0; transform: rotate(-20deg) scale(0.6); } 60% { opacity: 1; transform: rotate(8deg) scale(1.05); } 100% { opacity: 1; transform: none; } }
+@keyframes sm-deal { from { opacity: 0; transform: translateY(-120px) rotate(-6deg); } to { opacity: 1; transform: none; } }
+@keyframes sm-on { to { opacity: 1; border-color: var(--accent); background: var(--accent-soft); } }
+@keyframes sm-dash { from { left: 0; } to { left: var(--to); } }
+@keyframes sm-jog { from { left: 0; } to { left: var(--to); } }
+@keyframes sm-fill { to { background: var(--accent); border-color: var(--accent); } }
+
+.sm-scale { animation: sm-fade 300ms var(--ease-soft) 900ms both; }
