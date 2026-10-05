@@ -1,0 +1,343 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * Chapter 5 · openmed — prefix .om-
+ * Colors + font families come only from theme tokens.
+ * Audio (s): 2.8 8.0 5.2 12.8 4.0 11.6 6.6 10.6 5.7 7.8
+ * Motion ends ≥0.6s before each step's narration ends.
+ * ───────────────────────────────────────────────────────────────────── */
+
+.om-scene { color: var(--text); gap: 28px; }
+.om-em { color: var(--accent); }
+.om-kicker { font-size: 24px; letter-spacing: 0.2em; color: var(--text-2); }
+.om-cap {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.om-headline {
+  margin: 0;
+  font-size: 108px;
+  line-height: 1.02;
+  letter-spacing: var(--track-tight);
+}
+.om-headline--sm { font-size: 88px; }
+
+.om-print { animation: om-print 800ms var(--ease-quart) both; }
+@keyframes om-print {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 -10% 0 0); }
+}
+@keyframes om-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes om-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes om-draw { to { stroke-dashoffset: 0; } }
+@keyframes om-grow-x { from { transform: scaleX(0); } to { transform: scaleX(var(--s, 1)); } }
+@keyframes om-pop {
+  from { opacity: 0; transform: scale(0.4); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.om-at { animation: om-fade 400ms var(--ease-soft) both; animation-delay: var(--d, 0ms); }
+.om-up { animation: om-rise 500ms var(--ease-quart) both; animation-delay: var(--d, 0ms); }
+
+/* svg vocabulary */
+.om-svg { width: 100%; overflow: visible; }
+.om-axis-line { stroke: var(--text); stroke-width: 3; }
+.om-tick { stroke: var(--text-mute); stroke-width: 2; }
+.om-tick-label { font-family: var(--font-mono); font-size: 22px; fill: var(--text-mute); }
+.om-draw {
+  fill: none;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: om-draw 700ms var(--ease-soft) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+/* ─── step 0 · title + answer sheet ─── */
+.om-open { flex-direction: row; align-items: center; justify-content: space-between; gap: 80px; }
+.om-open-title { display: flex; flex-direction: column; gap: 24px; }
+.om-open-name { margin: 0; font-size: 240px; line-height: 0.9; color: var(--text); }
+.om-open-sub { animation: om-fade 400ms var(--ease-soft) 700ms both; }
+.om-sheet { flex: 0 0 520px; display: flex; flex-direction: column; gap: 22px; }
+.om-sheet-row { display: flex; align-items: center; gap: 22px; }
+.om-sheet-n { width: 48px; font-family: var(--font-mono); font-size: 26px; color: var(--text-mute); }
+.om-bubble {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid var(--text-mute);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 24px;
+  color: var(--text-mute);
+}
+.om-bubble.is-pick::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: var(--text);
+  animation: om-pop 220ms var(--ease-overshoot) both;
+  animation-delay: calc(400ms + var(--r) * 220ms);
+}
+.om-sheet-row:last-child .om-bubble.is-pick::after { background: var(--accent); }
+
+/* ─── step 1 · eight suites ─── */
+.om-suites { justify-content: center; gap: 48px; }
+.om-suite-head { display: flex; align-items: baseline; gap: 32px; }
+.om-suite-head .hero-num { font-size: 180px; line-height: 0.9; color: var(--accent); }
+.om-suite-head .serif-it { font-size: 72px; }
+.om-suite-row { display: flex; gap: 40px; align-items: stretch; }
+.om-book {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 26px 28px;
+  border: 3px solid var(--text);
+  background: var(--surface-2);
+  animation: om-deal 500ms var(--ease-quart) both;
+  animation-delay: var(--d);
+}
+@keyframes om-deal {
+  from { opacity: 0; transform: translateY(-60px) rotate(-3deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+.om-book--big { width: 360px; min-height: 250px; }
+.om-book--big .om-book-name { font-size: 60px; }
+.om-book-name { font-family: var(--font-display-en); font-style: italic; font-size: 38px; line-height: 1.05; }
+.om-book-tag { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); }
+.om-mmlu { flex: 1; display: flex; flex-direction: column; gap: 18px; }
+.om-mmlu-label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  animation: om-fade 400ms var(--ease-soft) 4000ms both;
+}
+.om-mmlu-label::after {
+  content: "";
+  flex: 1;
+  height: 3px;
+  background: var(--accent);
+  transform-origin: left;
+  animation: om-grow-x 600ms var(--ease-soft) 4000ms both;
+}
+.om-mmlu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.om-mmlu-grid .om-book { min-height: 96px; padding: 18px 22px; border-width: 2px; }
+
+/* ─── step 2 · eight bars level to one average ─── */
+.om-avg { flex-direction: row; align-items: center; gap: 72px; }
+.om-avg-hero { flex: 0 0 640px; display: flex; flex-direction: column; gap: 18px; }
+.om-avg-hero .hero-num {
+  font-size: 230px;
+  line-height: 0.9;
+  color: var(--accent);
+  animation: om-print 700ms var(--ease-quart) 2300ms both;
+}
+.om-avg-hero .om-avg-who { font-family: var(--font-display-en); font-size: 56px; animation: om-fade 400ms var(--ease-soft) 200ms both; }
+.om-avg-chart { flex: 1; min-width: 0; }
+.om-bar {
+  fill: var(--text);
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation:
+    om-bar-in 500ms var(--ease-quart) both,
+    om-level 800ms var(--ease-quart) 1700ms forwards;
+  animation-delay: calc(200ms + var(--i) * 90ms), 1700ms;
+}
+@keyframes om-bar-in { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes om-level { from { transform: scaleY(1); fill: var(--text); } to { transform: scaleY(var(--s)); fill: var(--accent); } }
+.om-bar-v {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  fill: var(--text-2);
+  animation:
+    om-fade 300ms var(--ease-soft) both,
+    om-out 300ms var(--ease-soft) 1600ms forwards;
+  animation-delay: calc(500ms + var(--i) * 90ms), 1600ms;
+}
+@keyframes om-out { to { opacity: 0; } }
+.om-avg-line {
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-dasharray: 10 8;
+  opacity: 0;
+  animation: om-fade 300ms var(--ease-soft) 2400ms forwards;
+}
+
+/* ─── step 3 · leaderboard on a full 0–100 scale ─── */
+.om-board { justify-content: center; gap: 44px; }
+.om-rows { display: flex; flex-direction: column; gap: 30px; }
+.om-row { display: grid; grid-template-columns: 420px 1fr 200px; align-items: center; gap: 36px; }
+.om-row-name { font-family: var(--font-display-en); font-size: 44px; line-height: 1.1; animation: om-fade 300ms var(--ease-soft) both; animation-delay: var(--d); }
+.om-row-track { position: relative; height: 44px; background: var(--surface-3); }
+.om-row-bar {
+  position: absolute;
+  inset: 0;
+  background: var(--text-2);
+  transform-origin: left;
+  animation: om-grow-x 900ms var(--ease-quart) both;
+  animation-delay: var(--d);
+}
+.om-row.is-us .om-row-bar { background: var(--accent); }
+.om-row.is-us .om-row-name { color: var(--accent); font-style: italic; }
+.om-row-v {
+  font-size: 72px;
+  line-height: 1;
+  text-align: right;
+  animation: om-fade 300ms var(--ease-soft) both;
+  animation-delay: calc(var(--d) + 500ms);
+}
+.om-row.is-us .om-row-v { color: var(--accent); }
+.om-scale { display: grid; grid-template-columns: 420px 1fr 200px; gap: 36px; }
+.om-scale-ticks { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 22px; color: var(--text-mute); }
+
+/* ─── step 4 · zoomed number line ─── */
+.om-zoom { justify-content: center; gap: 36px; }
+.om-zoom-head { display: flex; align-items: baseline; justify-content: space-between; }
+.om-zoom-gap { display: flex; align-items: baseline; gap: 24px; }
+.om-zoom-gap .hero-num {
+  font-size: 200px;
+  line-height: 0.9;
+  color: var(--accent);
+  animation: om-pop 400ms var(--ease-overshoot) 1700ms both;
+}
+.om-zoom-gap .mono { font-size: 26px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mute); animation: om-fade 300ms var(--ease-soft) 2000ms both; }
+.om-dot { fill: var(--text-2); transform-box: fill-box; transform-origin: center; animation: om-pop 350ms var(--ease-overshoot) both; animation-delay: var(--d); }
+.om-dot.is-us { fill: var(--accent); }
+.om-dot-label { font-family: var(--font-display-en); font-style: italic; font-size: 34px; fill: var(--text); animation: om-fade 300ms var(--ease-soft) both; animation-delay: var(--d); }
+.om-dot-label.is-us { fill: var(--accent); font-size: 40px; }
+.om-dot-num { font-family: var(--font-mono); font-size: 24px; fill: var(--text-mute); animation: om-fade 300ms var(--ease-soft) both; animation-delay: var(--d); }
+.om-bracket { stroke: var(--accent); stroke-width: 4; }
+
+/* ─── step 5 · subject grid; four flagged; College Biology duel ─── */
+.om-subj { flex-direction: row; align-items: center; gap: 64px; }
+.om-grid { flex: 0 0 1060px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.om-cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px 22px 20px;
+  min-height: 210px;
+  border: 2px solid var(--rule);
+  background: var(--surface-2);
+  animation: om-rise 400ms var(--ease-quart) both, om-dim 500ms var(--ease-soft) 5800ms forwards;
+  animation-delay: calc(200ms + var(--i) * 90ms), 5800ms;
+}
+.om-cell.is-focus { animation: om-rise 400ms var(--ease-quart) both; animation-delay: calc(200ms + var(--i) * 90ms); }
+@keyframes om-dim { to { opacity: 0.32; } }
+.om-cell-name { font-family: var(--font-body); font-size: 26px; line-height: 1.2; color: var(--text-2); min-height: 62px; }
+.om-cell-v { font-size: 64px; line-height: 1; }
+.om-cell-f { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.06em; color: var(--text-mute); }
+.om-cell.is-trail::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border: 4px solid var(--accent);
+  animation: om-fade 250ms var(--ease-soft) both;
+  animation-delay: calc(2600ms + var(--t) * 300ms);
+}
+.om-cell-flag {
+  position: absolute;
+  top: -16px;
+  right: 14px;
+  padding: 4px 10px;
+  background: var(--accent);
+  color: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  animation: om-pop 300ms var(--ease-overshoot) both;
+  animation-delay: calc(2600ms + var(--t) * 300ms);
+}
+.om-cell.is-trail .om-cell-v { color: var(--accent); }
+.om-duel { flex: 1; display: flex; flex-direction: column; gap: 22px; animation: om-fade 500ms var(--ease-soft) 6000ms both; }
+.om-duel-name { font-size: 72px; line-height: 1; }
+.om-duel-row { display: flex; flex-direction: column; gap: 10px; }
+.om-duel-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.om-duel-who { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mute); }
+.om-duel-top .hero-num { font-size: 96px; line-height: 1; }
+.om-duel-bar { height: 22px; background: var(--text-2); transform-origin: left; animation: om-grow-x 700ms var(--ease-quart) both; animation-delay: var(--d); }
+.om-duel-row.is-us .om-duel-bar { background: var(--accent); }
+.om-duel-row.is-us .hero-num { color: var(--accent); }
+.om-duel-row { animation: om-fade 300ms var(--ease-soft) both; animation-delay: var(--d); }
+.om-duel-gap { font-family: var(--font-display-en); font-style: italic; font-size: 48px; color: var(--accent); animation: om-fade 400ms var(--ease-soft) 9600ms both; }
+
+/* ─── step 6 · two 10×10 grids — 100 vs 99 ─── */
+.om-gen { justify-content: center; gap: 40px; }
+.om-gen-pair { display: flex; gap: 140px; justify-content: center; }
+.om-gen-col { display: flex; flex-direction: column; gap: 20px; }
+.om-gen-top { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
+.om-gen-top .hero-num { font-size: 120px; line-height: 0.9; }
+.om-gen-who { font-family: var(--font-display-en); font-size: 40px; }
+.om-gen-sub { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.1em; color: var(--text-mute); }
+.om-squares { display: grid; grid-template-columns: repeat(10, 36px); gap: 6px; }
+.om-sq {
+  width: 36px;
+  height: 36px;
+  background: var(--text-2);
+  animation: om-fade 150ms var(--ease-soft) both;
+  animation-delay: calc(var(--base) + var(--i) * 8ms);
+}
+.om-gen-col.is-us .om-sq { background: var(--accent); }
+.om-gen-col.is-us .hero-num { color: var(--accent); }
+.om-gen-col .om-gen-top { animation: om-fade 300ms var(--ease-soft) both; animation-delay: var(--base); }
+.om-gen-col.is-us .om-sq.is-miss {
+  background: transparent;
+  outline: 3px dashed var(--accent);
+  outline-offset: -3px;
+  animation: om-pop 350ms var(--ease-overshoot) 3800ms both;
+}
+
+/* ─── step 7 · PubMedQA — Medium out ahead ─── */
+.om-pub { justify-content: center; gap: 20px; }
+.om-band { fill: var(--surface-3); stroke: var(--text-mute); stroke-width: 2; stroke-dasharray: 6 6; transform-box: fill-box; transform-origin: left; animation: om-grow-x 700ms var(--ease-quart) 4600ms both; }
+.om-band-label { font-family: var(--font-mono); font-size: 24px; letter-spacing: 0.14em; fill: var(--text-mute); animation: om-fade 300ms var(--ease-soft) 5000ms both; }
+.om-gap-label { font-family: var(--font-display-en); font-style: italic; font-size: 64px; fill: var(--accent); animation: om-fade 400ms var(--ease-soft) 6600ms both; }
+.om-drop { transform-box: fill-box; animation: om-drop 600ms var(--ease-overshoot) both; animation-delay: var(--d); }
+@keyframes om-drop {
+  from { opacity: 0; transform: translateY(-120px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── step 8 · MedQA — a smaller lead ─── */
+.om-medqa { justify-content: center; gap: 64px; }
+.om-medqa-nums { display: flex; align-items: baseline; gap: 48px; }
+.om-medqa-nums .hero-num { font-size: 220px; line-height: 0.9; }
+.om-medqa-nums .om-vs { font-family: var(--font-display-en); font-style: italic; font-size: 64px; color: var(--text-mute); }
+.om-medqa-who { display: flex; gap: 220px; margin-top: -36px; }
+.om-leads { display: flex; flex-direction: column; gap: 24px; }
+.om-lead { display: grid; grid-template-columns: 300px 1fr; align-items: center; gap: 32px; animation: om-fade 300ms var(--ease-soft) both; animation-delay: var(--d); }
+.om-lead-name { font-family: var(--font-mono); font-size: 26px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mute); }
+.om-lead-bar { display: flex; align-items: center; gap: 24px; }
+.om-lead-fill { height: 40px; background: var(--text-faint); transform-origin: left; animation: om-grow-x 700ms var(--ease-quart) both; animation-delay: var(--d); }
+.om-lead.is-now .om-lead-fill { background: var(--accent); }
+.om-lead.is-now .om-lead-name { color: var(--text); }
+.om-lead-v { font-family: var(--font-display-en); font-style: italic; font-size: 52px; color: var(--text-faint); }
+.om-lead.is-now .om-lead-v { color: var(--accent); }
+
+/* ─── step 9 · Small — 90.63 on one GPU ─── */
+.om-small { justify-content: center; gap: 36px; }
+.om-small-top { display: flex; align-items: center; justify-content: space-between; gap: 80px; }
+.om-small-hero { display: flex; flex-direction: column; gap: 16px; }
+.om-small-hero .hero-num { font-size: 250px; line-height: 0.88; color: var(--accent); animation: om-print 800ms var(--ease-quart) 300ms both; }
+.om-small-who { font-family: var(--font-display-en); font-size: 56px; animation: om-fade 400ms var(--ease-soft) 100ms both; }
+.om-gpu { flex: 0 0 620px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.om-gpu-line { fill: none; stroke: var(--text); stroke-width: 4; stroke-dasharray: 1; stroke-dashoffset: 1; animation: om-draw 1000ms var(--ease-soft) forwards; animation-delay: var(--d); }
+.om-gpu-fill { fill: var(--accent); opacity: 0; animation: om-fade 300ms var(--ease-soft) 4600ms forwards; }
+.om-gpu-label { font-size: 48px; color: var(--accent); animation: om-print 600ms var(--ease-quart) 4800ms both; }
+.om-pub-v { font-size: 64px; fill: var(--accent); }
+.om-ghost { fill: none; stroke: var(--text-faint); stroke-width: 2; stroke-dasharray: 6 6; opacity: 0; animation: om-fade 400ms var(--ease-soft) 2400ms forwards; }

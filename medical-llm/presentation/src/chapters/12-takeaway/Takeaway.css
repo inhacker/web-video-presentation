@@ -1,0 +1,347 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * Chapter 12 · takeaway — prefix .tk-
+ * Colors + font families come only from theme tokens.
+ * Real audio (s):        9.0 · 7.3 · 6.7 · 7.0 · 6.3
+ * Last animation end (s): 6.6 · 5.1 · 5.6 · 5.1 · 5.2
+ * ───────────────────────────────────────────────────────────────────── */
+
+.tk-scene { color: var(--text); gap: 40px; }
+.tk-em { color: var(--accent); }
+
+.tk-headline {
+  margin: 0;
+  font-size: 112px;
+  line-height: 1.02;
+  letter-spacing: var(--track-tight);
+}
+.tk-headline--sm { font-size: 92px; }
+.tk-foot {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+.tk-svg-label { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.18em; fill: var(--text-mute); }
+
+/* ─── shared motion ─── */
+.tk-print { animation: tk-print 700ms var(--ease-quart) both; }
+@keyframes tk-print {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 -2% 0 0); }
+}
+@keyframes tk-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes tk-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes tk-draw { to { stroke-dashoffset: 0; } }
+@keyframes tk-stamp {
+  from { opacity: 0; transform: scale(1.5) rotate(-6deg); }
+  to   { opacity: 1; transform: scale(1) rotate(-4deg); }
+}
+
+/* ─── step 0 · ledger (ends 6.6s) ─── */
+.tk-ledger { position: relative; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.tk-lrow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 560px 300px 300px 1fr;
+  align-items: center;
+  padding: 26px 0;
+  border-bottom: var(--rule-w) var(--rule-style) var(--rule);
+  animation: tk-print 700ms var(--ease-quart) both;
+  animation-delay: calc(400ms + var(--i, 0) * 800ms);
+}
+.tk-lhead {
+  padding: 12px 0;
+  border-bottom: 2px solid var(--text);
+  font-size: 22px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  animation-delay: 200ms;
+}
+.tk-bench { display: flex; flex-direction: column; gap: 6px; font-family: var(--font-display-en); font-size: 64px; line-height: 1; }
+.tk-bench em { font-style: normal; font-size: 22px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-mute); }
+.tk-num { font-size: 104px; }
+.tk-num--fr { color: var(--text-mute); }
+.tk-tickcell { display: flex; align-items: center; gap: 28px; }
+.tk-tick { width: 80px; height: 64px; overflow: visible; }
+.tk-tick path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: tk-draw 400ms var(--ease-soft) forwards;
+  animation-delay: calc(2600ms + var(--i) * 600ms);
+}
+.tk-lead {
+  font-size: 56px;
+  color: var(--text-2);
+  animation: tk-fade 400ms var(--ease-soft) both;
+  animation-delay: calc(2900ms + var(--i) * 600ms);
+}
+.tk-lead.is-wide { font-size: 88px; color: var(--accent); }
+.tk-underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 24px;
+  overflow: visible;
+}
+.tk-underline path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: tk-draw 700ms var(--ease-soft) 5400ms forwards;
+}
+.tk-margin {
+  align-self: flex-end;
+  margin-top: 30px;
+  font-size: 52px;
+  color: var(--accent);
+  transform: rotate(-2deg);
+  animation: tk-fade 400ms var(--ease-soft) 6200ms both;
+}
+
+/* ─── step 1 · flip tiles (ends 5.1s) ─── */
+.tk-tiles { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; align-items: center; }
+.tk-tile {
+  height: 520px;
+  perspective: 1800px;
+  animation: tk-rise 500ms var(--ease-quart) both;
+  animation-delay: calc(300ms + var(--i) * 150ms);
+}
+.tk-tile-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: tk-flip 600ms var(--ease-quart) both;
+}
+.tk-tile:nth-child(1) .tk-tile-inner { animation-delay: 1800ms; }
+.tk-tile:nth-child(2) .tk-tile-inner { animation-delay: 4000ms; }
+.tk-tile:nth-child(3) .tk-tile-inner { animation-delay: 4500ms; }
+@keyframes tk-flip { from { transform: rotateY(0deg); } to { transform: rotateY(180deg); } }
+.tk-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: 44px;
+  backface-visibility: hidden;
+  border: 3px solid var(--text);
+}
+.tk-front { background: var(--surface-2); align-items: flex-start; }
+.tk-back { background: var(--text); color: var(--surface-2); transform: rotateY(180deg); }
+.tk-tile.is-jsl .tk-back { background: var(--accent); border-color: var(--accent); }
+.tk-task { font-size: 96px; line-height: 1; }
+.tk-metric { font-size: 24px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mute); }
+.tk-task-sm { font-size: 22px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.8; }
+.tk-winner { font-family: var(--font-display-en); font-style: italic; font-size: 54px; line-height: 1.05; }
+.tk-tile-v { font-size: 150px; color: inherit; }
+.tk-tile-note { font-size: 22px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
+
+/* ─── step 2 · walls + GPUs (ends 5.6s) ─── */
+.tk-walls { position: relative; margin-top: 24px; flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 48px; padding: 60px 64px; }
+.tk-walls-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.tk-wall {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 6;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: tk-draw 1200ms var(--ease-soft) 1200ms forwards;
+}
+.tk-walls-label {
+  position: absolute;
+  top: -14px;
+  left: 40px;
+  padding: 0 14px;
+  background: var(--surface);
+  font-size: 24px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  animation: tk-fade 400ms var(--ease-soft) 2200ms both;
+}
+.tk-chips { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px; }
+.tk-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  animation: tk-rise 400ms var(--ease-quart) both;
+  animation-delay: calc(600ms + var(--i) * 120ms);
+}
+.tk-gpu { width: 150px; height: 100px; overflow: visible; }
+.tk-gpu-body { fill: var(--surface-2); stroke: var(--text); stroke-width: 3; }
+.tk-gpu-pin { stroke: var(--text); stroke-width: 3; }
+.tk-gpu-die { fill: var(--text-mute); }
+.tk-chip-name { font-family: var(--font-display-en); font-size: 38px; line-height: 1.1; }
+.tk-chip-gpu {
+  padding: 6px 14px;
+  border: 3px solid var(--text-mute);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-mute);
+  animation: tk-fade 300ms var(--ease-soft) 4000ms both;
+}
+.tk-chip.is-one .tk-chip-gpu {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--surface-2);
+  animation: tk-light 350ms var(--ease-overshoot) both;
+  animation-delay: calc(4000ms + var(--i) * 200ms);
+}
+.tk-chip.is-one .tk-gpu-die { animation: tk-die 350ms var(--ease-soft) both; animation-delay: calc(4000ms + var(--i) * 200ms); }
+@keyframes tk-die { from { fill: var(--text-mute); } to { fill: var(--accent); } }
+@keyframes tk-light {
+  from { opacity: 0; transform: scale(1.4); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.tk-quote { position: relative; margin: 0; font-size: 44px; color: var(--text-2); animation: tk-fade 400ms var(--ease-soft) 5200ms both; }
+.tk-quote .mono { font-style: normal; font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mute); margin-left: 16px; }
+
+/* ─── step 3 · vendor's own numbers → your data (ends 5.1s) ─── */
+.tk-check { flex-direction: row; align-items: center; justify-content: center; gap: 40px; }
+.tk-stack { position: relative; width: 560px; height: 460px; }
+.tk-mini {
+  position: absolute;
+  left: calc(var(--n) * 40px);
+  top: calc(var(--n) * 36px);
+  width: 440px;
+  height: 320px;
+  padding: 36px 40px 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  border: 2px solid var(--text);
+  animation: tk-deal 500ms var(--ease-quart) both;
+  animation-delay: calc(200ms + var(--n) * 200ms);
+}
+@keyframes tk-deal {
+  from { opacity: 0; transform: translate(-80px, 60px) rotate(-6deg); }
+  to   { opacity: 1; transform: translate(0, 0) rotate(0); }
+}
+.tk-mini-bar { flex: 1; background: var(--text-mute); }
+.tk-mini-bar.is-jsl { background: var(--accent); }
+.tk-vendor-stamp {
+  position: absolute;
+  left: 60px;
+  top: 190px;
+  padding: 14px 26px;
+  border: 5px solid var(--accent);
+  background: var(--surface);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+  animation: tk-stamp 400ms var(--ease-overshoot) 1600ms both;
+}
+.tk-rerun { width: 300px; height: 160px; overflow: visible; }
+.tk-rerun-path {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: tk-draw 600ms var(--ease-soft) 3600ms forwards;
+}
+.tk-rerun-head { fill: none; stroke: var(--text); stroke-width: 5; animation: tk-fade 200ms var(--ease-soft) 4200ms both; }
+.tk-rerun text { animation: tk-fade 300ms var(--ease-soft) 4300ms both; }
+.tk-yours { display: flex; flex-direction: column; gap: 32px; width: 560px; }
+.tk-folder {
+  position: relative;
+  width: 420px;
+  height: 280px;
+  background: var(--surface-3);
+  border: 3px solid var(--text);
+  display: grid;
+  place-items: center;
+  animation: tk-rise 500ms var(--ease-quart) 4000ms both;
+}
+.tk-folder-tab {
+  position: absolute;
+  left: -3px;
+  top: -40px;
+  width: 160px;
+  height: 40px;
+  background: var(--surface-3);
+  border: 3px solid var(--text);
+  border-bottom: 0;
+}
+.tk-folder-label { font-size: 72px; color: var(--accent); }
+.tk-yours-copy {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 40px;
+  line-height: 1.3;
+  color: var(--text-2);
+  animation: tk-fade 500ms var(--ease-soft) 4600ms both;
+}
+
+/* ─── step 4 · CTA (ends 5.2s) ─── */
+.tk-cta { flex: 1; display: grid; grid-template-columns: 1fr 1.25fr; gap: 56px; align-items: center; padding: 20px 0; }
+.tk-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  min-height: 440px;
+  padding: 56px 60px;
+  border: 2px solid var(--text);
+  animation: tk-rise 600ms var(--ease-quart) both;
+}
+.tk-link--docs { animation-delay: 300ms; }
+.tk-link--colab { animation-delay: 2600ms; }
+.tk-link-kind { font-size: 26px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mute); }
+.tk-link-title { font-size: 72px; line-height: 1.05; color: var(--text); }
+.tk-placeholder {
+  align-self: flex-start;
+  padding: 10px 20px;
+  border: 3px dashed var(--accent);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  animation: tk-fade 400ms var(--ease-soft) 1000ms both;
+}
+.tk-link--colab .tk-placeholder { animation-delay: 4400ms; }
+.tk-cell {
+  display: flex;
+  gap: 24px;
+  padding: 28px 30px;
+  background: var(--surface-3);
+  border-left: 6px solid var(--text);
+  font-size: 30px;
+  color: var(--text-2);
+}
+.tk-cell-n { color: var(--text-mute); }
+.tk-cell-lines { display: flex; flex-direction: column; gap: 12px; }
+.tk-cell-line {
+  animation: tk-type 500ms steps(18, end) both;
+  animation-delay: calc(3200ms + var(--i) * 500ms);
+  white-space: nowrap;
+}
+@keyframes tk-type {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+.tk-late4 { animation: tk-fade 400ms var(--ease-soft) 4800ms both; }

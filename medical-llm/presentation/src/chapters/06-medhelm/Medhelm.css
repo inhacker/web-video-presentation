@@ -1,0 +1,320 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * Chapter 6 · medhelm — prefix .mh-
+ * Colors + font families come only from theme tokens.
+ * Audio (s): 6.1 8.2 6.9 11.8 7.1 10.2 — motion ends ≥0.6s earlier.
+ * ───────────────────────────────────────────────────────────────────── */
+
+.mh-scene { color: var(--text); gap: 28px; }
+.mh-em { color: var(--accent); }
+.mh-kicker { font-size: 22px; letter-spacing: 0.2em; color: var(--text-2); }
+
+.mh-headline {
+  margin: 0;
+  font-size: 104px;
+  line-height: 1.02;
+  letter-spacing: var(--track-tight);
+}
+
+@keyframes mh-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes mh-draw { to { stroke-dashoffset: 0; } }
+.mh-rise { animation: mh-rise 600ms var(--ease-quart) both; animation-delay: var(--d, 0ms); }
+@keyframes mh-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mh-at { animation: mh-fade 450ms var(--ease-soft) both; animation-delay: var(--d, 0ms); }
+.mh-print { animation: mh-print 900ms var(--ease-quart) both; animation-delay: var(--d, 0ms); }
+@keyframes mh-print {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+.mh-svg { width: 100%; flex: 1; min-height: 0; overflow: visible; }
+.mh-svg-label {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  letter-spacing: 0.18em;
+  fill: var(--text-mute);
+}
+.mh-svg-label--ink { fill: var(--text-2); }
+.mh-svg-label--accent { fill: var(--accent); }
+.mh-paper { fill: var(--surface-2); stroke: var(--text); stroke-width: 2; }
+.mh-ink-line { stroke: var(--text); stroke-width: 3; }
+
+/* ─── step 0 · exam sheet vs. clinical note ─── */
+.mh-exam {
+  animation: mh-recede 700ms var(--ease-soft) 1900ms both;
+}
+@keyframes mh-recede { from { opacity: 1; } to { opacity: 0.32; } }
+.mh-q-line { stroke: var(--text-2); stroke-width: 10; opacity: 0.7; }
+.mh-bubble { fill: none; stroke: var(--text); stroke-width: 2.5; }
+.mh-bubble-fill {
+  fill: var(--text);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mh-pop 300ms var(--ease-overshoot) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes mh-pop { from { transform: scale(0); } to { transform: scale(1); } }
+.mh-bubble-letter {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  fill: var(--text-2);
+}
+.mh-arrow {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 4;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: mh-draw 700ms var(--ease-quart) 2100ms forwards;
+}
+.mh-arrow-head { fill: var(--accent); animation: mh-fade 200ms var(--ease-soft) 2700ms both; }
+.mh-note-head {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  fill: var(--accent);
+}
+.mh-note-line {
+  stroke: var(--text);
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.8;
+  animation: mh-draw 420ms var(--ease-soft) forwards;
+  animation-delay: var(--d, 0ms);
+}
+.mh-hero-label {
+  font-family: var(--font-display-en);
+  font-size: 44px;
+  font-style: italic;
+  fill: var(--text);
+}
+
+/* ─── step 1 · thirteen tasks ─── */
+.mh-tasks { flex-direction: row; align-items: center; gap: 72px; }
+.mh-count { flex: 0 0 360px; display: flex; flex-direction: column; gap: 8px; }
+.mh-count .hero-num { font-size: 260px; line-height: 0.9; color: var(--accent); }
+.mh-count-sub { font-family: var(--font-display-en); font-style: italic; font-size: 52px; color: var(--text); }
+.mh-right { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 56px; }
+.mh-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.mh-tile {
+  position: relative;
+  height: 128px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--surface-2);
+  border: 2px solid var(--text);
+  animation: mh-deal 420ms var(--ease-quart) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes mh-deal {
+  from { opacity: 0; transform: translateY(-40px) rotate(-3deg); }
+  to   { opacity: 1; transform: none; }
+}
+.mh-tile-name { font-family: var(--font-display-en); font-size: 32px; line-height: 1.05; }
+.mh-tile-n { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.14em; color: var(--text-mute); }
+.mh-cats { display: flex; flex-wrap: wrap; gap: 14px 40px; align-items: baseline; }
+.mh-cat {
+  font-family: var(--font-display-en);
+  font-size: 48px;
+  color: var(--text-faint);
+  border-bottom: 4px solid transparent;
+  padding-bottom: 4px;
+  animation:
+    mh-cat-on 350ms var(--ease-soft) var(--on) both,
+    mh-cat-off 350ms var(--ease-soft) var(--off) forwards;
+}
+@keyframes mh-cat-on {
+  from { color: var(--text-faint); border-bottom-color: transparent; }
+  to   { color: var(--accent); border-bottom-color: var(--accent); }
+}
+@keyframes mh-cat-off {
+  from { color: var(--accent); border-bottom-color: var(--accent); }
+  to   { color: var(--text); border-bottom-color: var(--rule); }
+}
+
+/* ─── step 2 · what a win rate is (illustrative) ─── */
+.mh-def { flex-direction: row; align-items: center; gap: 80px; }
+.mh-def-text { flex: 0 0 640px; display: flex; flex-direction: column; gap: 28px; }
+.mh-def-sub {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 40px;
+  line-height: 1.35;
+  color: var(--text-2);
+}
+.mh-duel { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+.mh-duel-row { display: grid; grid-template-columns: 170px repeat(6, 1fr); gap: 12px; align-items: center; }
+.mh-duel-head { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.14em; color: var(--text-mute); text-align: center; }
+.mh-duel-rival { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.1em; color: var(--text-2); }
+.mh-cell {
+  height: 64px;
+  border: 2px solid var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  animation: mh-stamp 260ms var(--ease-overshoot) both;
+  animation-delay: var(--d, 0ms);
+}
+.mh-cell.is-win { background: var(--accent); border-color: var(--accent); color: var(--surface-2); }
+.mh-cell.is-loss { background: transparent; border-color: var(--text-faint); color: var(--text-faint); }
+@keyframes mh-stamp {
+  from { opacity: 0; transform: scale(1.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.mh-tally { display: flex; align-items: baseline; gap: 24px; margin-top: 18px; }
+.mh-tally .hero-num { font-size: 96px; color: var(--accent); }
+.mh-tally-eq { font-family: var(--font-display-en); font-size: 48px; color: var(--text-2); }
+.mh-note { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.16em; color: var(--text-mute); text-transform: uppercase; }
+
+/* ─── step 3 · the headline score ─── */
+.mh-top { flex-direction: row; align-items: center; gap: 96px; }
+.mh-top-hero { flex: 0 0 600px; display: flex; flex-direction: column; gap: 16px; }
+.mh-top-hero .hero-num { font-size: 220px; line-height: 0.9; color: var(--accent); }
+.mh-top-sub { font-family: var(--font-display-en); font-style: italic; font-size: 48px; }
+.mh-chart { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+.mh-plot {
+  position: relative;
+  height: 560px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 28px;
+  align-items: end;
+  border-bottom: 3px solid var(--text);
+}
+.mh-gridline { position: absolute; left: 0; right: 0; border-top: 1px dashed var(--rule); }
+.mh-gridline span {
+  position: absolute; right: 100%; top: -12px; padding-right: 12px;
+  font-family: var(--font-mono); font-size: 22px; color: var(--text-mute);
+}
+.mh-col { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; }
+.mh-col-bar {
+  height: var(--h);
+  background: var(--text-faint);
+  transform-origin: bottom;
+  animation: mh-grow 800ms var(--ease-quart) both;
+  animation-delay: var(--d, 0ms);
+}
+.mh-col.is-us .mh-col-bar { background: var(--accent); }
+.mh-col.is-next .mh-col-bar { animation: mh-grow 800ms var(--ease-quart) var(--d) both, mh-ink 400ms var(--ease-soft) 6000ms forwards; }
+@keyframes mh-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes mh-ink { to { background: var(--text); } }
+.mh-col-v {
+  position: absolute; left: 0; right: 0; bottom: calc(var(--h) + 10px);
+  text-align: center; font-family: var(--font-mono); font-size: 26px; font-weight: 700;
+  animation: mh-fade 300ms var(--ease-soft) both;
+  animation-delay: calc(var(--d) + 600ms);
+}
+.mh-col.is-us .mh-col-v { color: var(--accent); }
+.mh-col-names { display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; }
+.mh-col-name { font-family: var(--font-display-en); font-size: 24px; line-height: 1.15; text-align: center; color: var(--text-2); }
+.mh-gap {
+  position: absolute; left: -28px; right: 0;
+  top: calc(100% - var(--hm)); bottom: calc(var(--h) + 50px);
+  border-top: 3px dashed var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  animation: mh-fade 400ms var(--ease-soft) 6400ms both;
+}
+.mh-gap span {
+  font-family: var(--font-mono); font-size: 28px; font-weight: 700; color: var(--text);
+  white-space: nowrap;
+}
+
+/* ─── step 4 · 12 of 13 ─── */
+.mh-tile.is-quick { animation: mh-fade 400ms var(--ease-soft) both; }
+.mh-tile.is-win {
+  animation: mh-fade 400ms var(--ease-soft) both, mh-claim 380ms var(--ease-quart) var(--w) forwards;
+}
+@keyframes mh-claim {
+  to { background: var(--accent-soft); border-color: var(--accent); }
+}
+.mh-tile.is-open { border-style: dashed; border-color: var(--text-mute); }
+.mh-tile.is-open .mh-tile-name { color: var(--text-mute); }
+.mh-tile-row { display: flex; justify-content: space-between; align-items: baseline; }
+.mh-margin {
+  font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: var(--accent);
+  animation: mh-fade 300ms var(--ease-soft) both; animation-delay: var(--w);
+}
+.mh-tile.is-close {
+  animation: mh-fade 400ms var(--ease-soft) both, mh-claim 380ms var(--ease-quart) var(--w) forwards, mh-ring 500ms var(--ease-overshoot) 4300ms forwards;
+}
+@keyframes mh-ring {
+  from { background: var(--accent-soft); border-color: var(--accent); box-shadow: 0 0 0 0 var(--accent); }
+  to   { background: var(--accent-soft); border-color: var(--accent); box-shadow: 0 0 0 8px var(--accent-glow); transform: scale(1.06); }
+}
+.mh-close-note {
+  grid-column: 4 / span 2; grid-row: 3;
+  position: relative; padding: 12px 18px 12px 64px;
+  display: flex; flex-direction: column; justify-content: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 26px; color: var(--text);
+  border-left: 3px solid var(--accent);
+  animation: mh-rise 500ms var(--ease-quart) 4500ms both;
+}
+.mh-close-note b { color: var(--accent); }
+.mh-close-arrow { position: absolute; left: 14px; top: 6px; font-size: 40px; color: var(--accent); }
+.mh-close-sub { font-family: var(--font-display-en); font-style: italic; font-size: 30px; color: var(--text-2); }
+.mh-score { flex: 0 0 360px; display: flex; flex-direction: column; gap: 8px; }
+.mh-score .hero-num { font-size: 200px; line-height: 0.9; color: var(--accent); }
+.mh-score-of { font-family: var(--font-display-en); font-style: italic; font-size: 48px; }
+
+/* ─── step 5 · Medec gap ─── */
+.mh-medec { justify-content: center; gap: 40px; }
+.mh-ruler { position: relative; height: 380px; margin: 0 40px; }
+.mh-axis {
+  position: absolute; left: 0; right: 0; top: 220px; height: 3px; background: var(--text);
+  transform-origin: left; animation: mh-sweep 900ms var(--ease-quart) 600ms both;
+}
+@keyframes mh-sweep { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.mh-tick {
+  position: absolute; top: 212px; width: 2px; height: 19px; background: var(--text);
+  animation: mh-fade 300ms var(--ease-soft) 1300ms both;
+}
+.mh-tick span {
+  position: absolute; top: 28px; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: 22px; color: var(--text-mute);
+}
+.mh-band {
+  position: absolute; top: 204px; height: 35px; background: var(--accent-soft);
+  border: 3px solid var(--accent);
+  transform-origin: left; animation: mh-sweep 900ms var(--ease-quart) 7000ms both;
+}
+.mh-pin {
+  position: absolute; top: 0; width: 0; height: 221px;
+  animation: mh-drop 500ms var(--ease-overshoot) both; animation-delay: var(--d);
+}
+@keyframes mh-drop { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: none; } }
+.mh-pin::after {
+  content: ""; position: absolute; left: -13px; bottom: -13px; width: 26px; height: 26px;
+  border-radius: 50%; background: var(--text-faint);
+}
+.mh-pin.is-us::after { background: var(--accent); }
+.mh-pin.is-best::after { background: var(--text); }
+.mh-pin-stem { position: absolute; left: -1px; top: 96px; bottom: 0; width: 2px; background: var(--rule); }
+.mh-pin-label { position: absolute; top: 0; white-space: nowrap; display: flex; flex-direction: column; gap: 4px; }
+.mh-pin.is-us .mh-pin-label { left: -60px; align-items: flex-start; }
+.mh-pin.is-best .mh-pin-label { right: -60px; align-items: flex-end; }
+.mh-pin-v { font-family: var(--font-display-en); font-size: 64px; line-height: 1; }
+.mh-pin.is-us .mh-pin-v { color: var(--accent); }
+.mh-pin-n { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.12em; color: var(--text-2); text-transform: uppercase; }
+.mh-others {
+  position: absolute; top: 290px; white-space: nowrap;
+  font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.1em; color: var(--text-mute);
+  animation: mh-fade 400ms var(--ease-soft) 5600ms both;
+}
+.mh-gap-hero {
+  position: absolute; top: 290px; transform: translateX(-50%); text-align: center;
+}
+.mh-gap-hero .hero-num { font-size: 120px; line-height: 1; color: var(--accent); }

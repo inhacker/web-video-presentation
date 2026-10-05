@@ -1,0 +1,267 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * Chapter 7 · medhelm-edges — prefix .me-
+ * Colors + font families come only from theme tokens.
+ * Audio (s): 6.7 9.9 8.5 3.8 9.8 — motion ends ≥0.6s before each.
+ * ───────────────────────────────────────────────────────────────────── */
+
+.me-scene { color: var(--text); gap: 28px; }
+.me-em { color: var(--accent); }
+.me-kicker { font-size: 24px; letter-spacing: 0.2em; color: var(--text-2); }
+.me-cap {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 22px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+@keyframes me-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes me-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes me-pop {
+  from { opacity: 0; transform: scale(0.3); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes me-draw { to { stroke-dashoffset: 0; } }
+@keyframes me-grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes me-print {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 -10% 0 0); }
+}
+.me-at { animation: me-fade 400ms var(--ease-soft) both; animation-delay: var(--d, 0ms); }
+.me-up { animation: me-rise 500ms var(--ease-quart) both; animation-delay: var(--d, 0ms); }
+
+/* svg vocabulary */
+.me-svg { width: 100%; overflow: visible; }
+.me-axis { stroke: var(--text); stroke-width: 3; }
+.me-tick { stroke: var(--text-mute); stroke-width: 2; }
+.me-tick-label { font-family: var(--font-mono); font-size: 22px; fill: var(--text-mute); }
+.me-draw {
+  fill: none;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: me-draw 600ms var(--ease-soft) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+/* ─── step 0 · two margins on number lines ─── */
+.me-gaps { justify-content: center; gap: 36px; }
+.me-lane { display: grid; grid-template-columns: 440px 1fr; align-items: center; gap: 20px; }
+.me-lane-name { display: flex; flex-direction: column; gap: 10px; }
+.me-lane-name .serif-it { font-size: 76px; line-height: 1; }
+.me-dot-f { fill: var(--text-mute); transform-box: fill-box; transform-origin: center; animation: me-pop 300ms var(--ease-overshoot) both; animation-delay: var(--d); }
+.me-dot-m { fill: var(--accent); }
+.me-slide { animation: me-slide 900ms var(--ease-quart) both; animation-delay: var(--d); }
+@keyframes me-slide {
+  from { transform: translateX(var(--from)); opacity: 0.2; }
+  20%  { opacity: 1; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+.me-gap-bar {
+  fill: var(--accent);
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: me-grow-x 500ms var(--ease-quart) both;
+  animation-delay: var(--d);
+}
+.me-val { font-family: var(--font-mono); font-size: 26px; fill: var(--text-2); }
+.me-val--m { fill: var(--accent); font-weight: 700; }
+.me-delta {
+  font-family: var(--hero-num-font);
+  font-style: var(--hero-num-style);
+  letter-spacing: var(--hero-num-track);
+  font-size: 120px;
+  fill: var(--accent);
+}
+
+/* ─── step 1 · Med-Hallu bars break the ceiling ─── */
+.me-hallu { justify-content: center; gap: 30px; }
+.me-hallu-head { display: flex; align-items: baseline; gap: 32px; }
+.me-hallu-head .serif-it { font-size: 96px; line-height: 1; }
+.me-hbar {
+  fill: var(--text-2);
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: me-grow-x 900ms var(--ease-quart) both;
+  animation-delay: var(--d);
+}
+.me-hbar--us { fill: var(--accent); }
+.me-track { fill: var(--surface-3); }
+.me-hname { font-family: var(--font-display-en); font-size: 40px; fill: var(--text); }
+.me-hname--us { fill: var(--accent); font-style: italic; }
+.me-hval {
+  font-family: var(--hero-num-font);
+  font-style: var(--hero-num-style);
+  font-size: 64px;
+  fill: var(--text);
+}
+.me-hval--us { fill: var(--accent); }
+.me-ceiling {
+  stroke: var(--text);
+  stroke-width: 3;
+  stroke-dasharray: 12 9;
+  animation: me-drop 600ms var(--ease-quart) both;
+  animation-delay: var(--d);
+}
+@keyframes me-drop {
+  from { opacity: 0; transform: translateY(-40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.me-ceiling-label { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.12em; fill: var(--text); }
+
+/* ─── step 2 · 12 of 13 tick off; RaceBias stays open ─── */
+.me-lost { flex-direction: row; align-items: center; gap: 72px; }
+.me-grid-col { flex: 0 0 940px; display: flex; flex-direction: column; gap: 26px; }
+.me-grid-head { display: flex; align-items: baseline; gap: 24px; }
+.me-grid-head .hero-num { font-size: 140px; }
+.me-grid-head .serif-it { font-size: 48px; }
+.me-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.me-tile {
+  position: relative;
+  min-height: 104px;
+  padding: 46px 18px 14px 18px; /* top band keeps the tick clear of two-line names */
+  border: 2px solid var(--text);
+  background: var(--surface-2);
+  font-family: var(--font-display-en);
+  font-size: 30px;
+  line-height: 1.1;
+  display: flex;
+  align-items: flex-end;
+  animation: me-fade 250ms var(--ease-soft) both;
+  animation-delay: var(--d);
+}
+.me-tile.is-win::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  width: 12px;
+  height: 24px;
+  border-right: 4px solid var(--text);
+  border-bottom: 4px solid var(--text);
+  transform: rotate(45deg);
+  animation: me-tick 220ms var(--ease-overshoot) both;
+  animation-delay: calc(var(--d) + 150ms);
+}
+.me-tile.is-loss {
+  border-style: dashed;
+  color: var(--accent);
+  font-style: italic;
+  animation: me-fade 250ms var(--ease-soft) both, me-flag 500ms var(--ease-quart) 2100ms forwards;
+  animation-delay: var(--d), 2100ms;
+}
+@keyframes me-flag {
+  from { border-color: var(--text); background: var(--surface-2); }
+  to   { border-color: var(--accent); background: var(--accent-soft); }
+}
+.me-race { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.me-race-title { margin: 0; font-size: 84px; line-height: 1; color: var(--accent); animation: me-print 600ms var(--ease-quart) 2000ms both; }
+.me-vbar {
+  fill: var(--text-2);
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: me-grow-y 600ms var(--ease-quart) both;
+  animation-delay: var(--d);
+}
+.me-vbar--us { fill: var(--accent); }
+.me-vbar--faint { fill: var(--text-faint); }
+@keyframes me-grow-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.me-vval { font-family: var(--hero-num-font); font-style: var(--hero-num-style); font-size: 60px; fill: var(--text); }
+.me-vval--us { fill: var(--accent); }
+.me-vname { font-family: var(--font-mono); font-size: 22px; letter-spacing: 0.06em; fill: var(--text-mute); }
+.me-line91 { stroke: var(--text); stroke-width: 2; stroke-dasharray: 10 8; }
+
+@keyframes me-tick {
+  from { opacity: 0; transform: rotate(45deg) scale(0.3); }
+  to   { opacity: 1; transform: rotate(45deg) scale(1); }
+}
+.me-tile.is-loss { grid-column: span 2; font-size: 40px; }
+
+/* ─── step 3 · remember this one ─── */
+.me-remember { flex-direction: row; align-items: center; justify-content: space-between; gap: 60px; }
+.me-remember-text { display: flex; flex-direction: column; gap: 18px; }
+.me-big { margin: 0; white-space: nowrap; font-size: 116px; line-height: 1.02; letter-spacing: var(--track-tight); }
+.me-big--a { animation: me-print 700ms var(--ease-quart) both; }
+.me-big--b { animation: me-print 700ms var(--ease-quart) 800ms both; }
+.me-pin { position: relative; flex: 0 0 500px; height: 400px; }
+.me-pin svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.me-ring { stroke: var(--accent); stroke-width: 6; stroke-linecap: round; }
+.me-pin-word { font-family: var(--font-display-en); font-style: italic; font-size: 96px; fill: var(--text); }
+
+/* ─── step 4 · mean win rate ladder + the asterisk ─── */
+.me-ast { flex-direction: row; align-items: center; gap: 80px; }
+.me-ladder { flex: 0 0 820px; display: flex; flex-direction: column; gap: 18px; }
+.me-rung {
+  display: grid;
+  grid-template-columns: 56px 1fr 180px;
+  align-items: baseline;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+  animation: me-fade 350ms var(--ease-soft) both;
+  animation-delay: var(--d);
+}
+.me-rung-rank { font-family: var(--font-mono); font-size: 26px; color: var(--text-mute); }
+.me-rung-name { font-family: var(--font-display-en); font-size: 44px; line-height: 1.1; }
+.me-rung-v { font-family: var(--hero-num-font); font-style: var(--hero-num-style); font-size: 64px; line-height: 1; text-align: right; }
+.me-rung.is-front { position: relative; }
+.me-rung.is-front::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 10px;
+  bottom: 10px;
+  width: 6px;
+  background: var(--text);
+  transform-origin: top;
+  animation: me-grow-y 400ms var(--ease-quart) both;
+  animation-delay: var(--b);
+}
+.me-rung.is-small {
+  color: var(--accent);
+  border-bottom: 3px solid var(--accent);
+  animation: me-fall 1100ms var(--ease-quart) both;
+  animation-delay: var(--d);
+}
+.me-rung.is-small .me-rung-name { font-style: italic; }
+.me-rung.is-small .me-rung-rank { color: var(--accent); }
+@keyframes me-fall {
+  0%   { opacity: 0; transform: translateY(-420px); }
+  15%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.me-claim { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 28px; }
+.me-quote {
+  margin: 0;
+  font-family: var(--font-display-en);
+  font-style: italic;
+  font-size: 64px;
+  line-height: 1.15;
+  color: var(--text);
+  animation: me-print 800ms var(--ease-quart) 4600ms both;
+}
+.me-star {
+  display: inline-block;
+  color: var(--accent);
+  font-style: normal;
+  font-size: 1.4em;
+  line-height: 0;
+  vertical-align: -0.1em;
+  animation: me-stamp 450ms var(--ease-overshoot) 6000ms both;
+}
+@keyframes me-stamp {
+  from { opacity: 0; transform: scale(3) rotate(-30deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+.me-foot {
+  margin: 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: 32px;
+  line-height: 1.35;
+  color: var(--text-2);
+  animation: me-rise 500ms var(--ease-quart) 6700ms both;
+}

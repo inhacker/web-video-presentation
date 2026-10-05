@@ -4,3 +4,10 @@ dist/
 .env
 .env.*
 *.log
+
+# 个人参考笔记（含第三方视频内容整理），不公开
+notes/
+
+# 第三方原文（厂商文档），仅本地使用
+medical-llm/article.md
+medical-llm/page.html

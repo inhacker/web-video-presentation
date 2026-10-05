@@ -1,0 +1,191 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * Chapter 11 · ocr-json — prefix .oj-
+ * Colors + font families come only from theme tokens.
+ * Real audio (s):        5.3 · 13.4 · 4.6 · 7.8
+ * Last animation end (s): 3.6 · 10.8 · 2.6 · 6.4
+ * ───────────────────────────────────────────────────────────────────── */
+
+.oj-scene { color: var(--text); gap: 28px; }
+.oj-em { color: var(--accent); }
+
+.oj-headline {
+  margin: 0;
+  font-size: 112px;
+  line-height: 1.02;
+  letter-spacing: var(--track-tight);
+}
+.oj-headline--sm { font-size: 88px; }
+.oj-kicker { font-size: 24px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-2); }
+.oj-foot {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+/* ─── shared motion ─── */
+.oj-print { animation: oj-print 700ms var(--ease-quart) both; }
+@keyframes oj-print {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 -2% 0 0); }
+}
+.oj-rise { animation: oj-rise 600ms var(--ease-quart) both; }
+@keyframes oj-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes oj-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes oj-draw { to { stroke-dashoffset: 0; } }
+@keyframes oj-stamp {
+  from { opacity: 0; transform: scale(1.5) rotate(-5deg); }
+  to   { opacity: 1; transform: scale(1) rotate(-3deg); }
+}
+
+.oj-svg { width: 100%; flex: 1; min-height: 0; overflow: visible; }
+.oj-svg-label {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  letter-spacing: 0.18em;
+  fill: var(--text-mute);
+}
+.oj-svg-label--ink { fill: var(--text-2); }
+.oj-paper { fill: var(--surface-2); stroke: var(--text); stroke-width: 2; }
+.oj-text-line { stroke: var(--text-2); stroke-width: 10; opacity: 0.7; }
+
+/* ─── step 0 · 100 documents (ends 3.6s) ─── */
+.oj-open { justify-content: center; gap: 44px; }
+.oj-hero-row { display: flex; align-items: baseline; gap: 40px; }
+.oj-odo {
+  display: inline-flex;
+  font-family: var(--hero-num-font);
+  font-style: var(--hero-num-style);
+  font-weight: var(--hero-num-weight);
+  letter-spacing: var(--hero-num-track);
+  font-size: 300px;
+  line-height: 1.05;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.oj-odo-win { display: inline-block; height: 1.05em; overflow: hidden; }
+.oj-odo-strip {
+  display: flex;
+  flex-direction: column;
+  animation: oj-roll 1700ms var(--ease-quart) both;
+  animation-delay: var(--dl);
+}
+.oj-odo-strip > span { height: 1.05em; display: block; text-align: center; }
+@keyframes oj-roll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(calc(var(--to) * -1.05em)); }
+}
+.oj-hero-unit { font-size: 96px; color: var(--text); animation: oj-fade 400ms var(--ease-soft) 1000ms both; }
+.oj-ticks { display: flex; gap: 5px; align-items: flex-end; }
+.oj-tickdoc {
+  display: block;
+  width: 12px;
+  height: 56px;
+  background: var(--surface-2);
+  border: 2px solid var(--text-2);
+  transform-origin: bottom;
+  animation: oj-tick 200ms var(--ease-quart) both;
+  animation-delay: calc(600ms + var(--i) * 20ms);
+}
+.oj-tickdoc.is-ten { height: 76px; border-color: var(--accent); }
+@keyframes oj-tick { from { opacity: 0; transform: scaleY(0.2); } to { opacity: 1; transform: scaleY(1); } }
+.oj-late0 { animation: oj-fade 400ms var(--ease-soft) 3200ms both; }
+
+/* ─── step 1 / 2 · brace gauges ─── */
+.oj-acc { flex-direction: row; align-items: center; gap: 40px; }
+.oj-acc-copy { flex: 0 0 520px; display: flex; flex-direction: column; gap: 24px; }
+.oj-acc .oj-headline .hero-num { font-size: 200px; color: var(--accent); }
+.oj-acc-sub { margin: 0; font-family: var(--font-body); font-size: 38px; line-height: 1.3; color: var(--text-2); }
+.oj-acc-note { margin: 0; font-size: 24px; line-height: 1.5; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mute); }
+.oj-late1a { animation: oj-fade 500ms var(--ease-soft) 3000ms both; }
+.oj-late1b { animation: oj-fade 400ms var(--ease-soft) 10400ms both; }
+.oj-acc .oj-svg { flex: 1; width: 0; height: 780px; }
+
+.oj-acc .oj-svg-label { font-size: 28px; }
+.oj-tick { stroke: var(--rule); stroke-width: 1.5; stroke-dasharray: 4 8; }
+.oj-base { stroke: var(--text); stroke-width: 3; }
+.oj-brace { fill: none; stroke: var(--text); stroke-width: 6; stroke-linecap: round; }
+.oj-gauge.is-jsl .oj-brace { stroke: var(--accent); }
+.oj-fill {
+  fill: var(--text-mute);
+  transform-box: fill-box;
+  transform-origin: bottom;
+}
+.oj-gauge.is-jsl .oj-fill { fill: var(--accent); }
+.oj-val {
+  font-family: var(--hero-num-font);
+  font-style: var(--hero-num-style);
+  font-size: 56px;
+  fill: var(--text);
+}
+.oj-gauge.is-jsl .oj-val { fill: var(--accent); }
+.oj-name { font-family: var(--font-mono); font-size: 25px; letter-spacing: 0; fill: var(--text-mute); }
+.oj-name.is-jsl { fill: var(--accent); font-weight: 700; }
+.oj-q { font-family: var(--font-display-en); font-style: italic; font-size: 96px; fill: var(--text-faint); }
+
+/* fill = rising now */
+.oj-gauge.is-fill .oj-fill { animation: oj-rise-y 1200ms var(--ease-quart) both; animation-delay: var(--d); }
+@keyframes oj-rise-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.oj-gauge.is-fill .oj-val { animation: oj-fade 400ms var(--ease-soft) both; animation-delay: calc(var(--d) + 1000ms); }
+/* wait = the empty slot */
+.oj-gauge.is-wait { opacity: 0.4; }
+.oj-gauge.is-wait .oj-brace { stroke: var(--text-faint); stroke-dasharray: 10 10; }
+/* static = already filled (step 2), then steps back */
+.oj-gauge.is-static { animation: oj-dim 400ms var(--ease-soft) 1800ms both; }
+@keyframes oj-dim { from { opacity: 1; } to { opacity: 0.45; } }
+.oj-acc--reveal .oj-gauge.is-fill .oj-fill { fill: var(--text); }
+.oj-first {
+  align-self: flex-start;
+  padding: 10px 22px;
+  border: 4px solid var(--text);
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  animation: oj-stamp 400ms var(--ease-overshoot) 2200ms both;
+}
+
+/* ─── step 3 · harness (ends 6.4s) ─── */
+.oj-frame {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 4;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: oj-draw 1200ms var(--ease-soft) 200ms forwards;
+}
+.oj-frame-label { animation: oj-fade 400ms var(--ease-soft) 1000ms both; }
+.oj-prompt { animation: oj-fade 400ms var(--ease-soft) 1000ms both; }
+.oj-lane {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 3;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: oj-draw 500ms var(--ease-soft) forwards;
+  animation-delay: calc(2800ms + var(--i) * 200ms);
+}
+.oj-model { animation: oj-fade 300ms var(--ease-soft) both; animation-delay: calc(3000ms + var(--i) * 200ms); }
+.oj-model-box { fill: var(--surface-2); stroke: var(--text); stroke-width: 2; }
+.oj-model-box.is-jsl { stroke: var(--accent); stroke-width: 3; }
+.oj-model-name { font-family: var(--font-display-en); font-size: 36px; fill: var(--text); }
+.oj-model-name.is-jsl { font-style: italic; fill: var(--accent); }
+.oj-ok {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: oj-stamp 350ms var(--ease-overshoot) both;
+  animation-delay: calc(4800ms + var(--i) * 200ms);
+}
+.oj-ok-text {
+  font-family: var(--font-mono);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  fill: var(--accent);
+}
+.oj-late3 { animation: oj-fade 400ms var(--ease-soft) 6000ms both; }

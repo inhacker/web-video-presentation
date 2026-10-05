@@ -1,0 +1,512 @@
+[
+  {
+    "chapter": "coldopen",
+    "step": 1,
+    "text": "Your hospital probably can't send patient records to GPT 5.5. Not without a lot of paperwork.",
+    "audio": "coldopen/1.mp3"
+  },
+  {
+    "chapter": "coldopen",
+    "step": 2,
+    "text": "So what if the model you're allowed to run, on your own servers, scored higher on medical benchmarks?",
+    "audio": "coldopen/2.mp3"
+  },
+  {
+    "chapter": "coldopen",
+    "step": 3,
+    "text": "That's the claim John Snow Labs is making with two new medical LLMs. Let's check their numbers.",
+    "audio": "coldopen/3.mp3"
+  },
+  {
+    "chapter": "coldopen",
+    "step": 4,
+    "text": "We'll also look at where their own charts show them losing.",
+    "audio": "coldopen/4.mp3"
+  },
+  {
+    "chapter": "why-private",
+    "step": 1,
+    "text": "In healthcare, they argue, a specialized model beats a general one.",
+    "audio": "why-private/1.mp3"
+  },
+  {
+    "chapter": "why-private",
+    "step": 2,
+    "text": "They point to academic papers and industry benchmarks that keep showing this.",
+    "audio": "why-private/2.mp3"
+  },
+  {
+    "chapter": "why-private",
+    "step": 3,
+    "text": "So they built a pair. Medical LLM Medium, and Medical LLM Small.",
+    "audio": "why-private/3.mp3"
+  },
+  {
+    "chapter": "why-private",
+    "step": 4,
+    "text": "Both read text and images, and both ship with a fixed John Snow Labs identity.",
+    "audio": "why-private/4.mp3"
+  },
+  {
+    "chapter": "why-private",
+    "step": 5,
+    "text": "The real pitch is where they run. GPT, Claude and Gemini live in someone else's cloud. These can sit on-premise, or in your private cloud.",
+    "audio": "why-private/5.mp3"
+  },
+  {
+    "chapter": "why-private",
+    "step": 6,
+    "text": "That keeps things HIPAA-friendly. And they say you don't give up frontier-level medical accuracy to get it.",
+    "audio": "why-private/6.mp3"
+  },
+  {
+    "chapter": "why-private",
+    "step": 7,
+    "text": "The target work is clinical reasoning and diagnostics.",
+    "audio": "why-private/7.mp3"
+  },
+  {
+    "chapter": "why-private",
+    "step": 8,
+    "text": "Plus reading medical research, and even genetic analysis.",
+    "audio": "why-private/8.mp3"
+  },
+  {
+    "chapter": "flagship-pair",
+    "step": 1,
+    "text": "Start with hardware. Medium is the flagship. It wants about 67 gigabytes of GPU memory.",
+    "audio": "flagship-pair/1.mp3"
+  },
+  {
+    "chapter": "flagship-pair",
+    "step": 2,
+    "text": "Small needs about 25. That fits on one commodity GPU.",
+    "audio": "flagship-pair/2.mp3"
+  },
+  {
+    "chapter": "flagship-pair",
+    "step": 3,
+    "text": "Both take a 262K-token context. That's hundreds of pages of patient history in a single prompt.",
+    "audio": "flagship-pair/3.mp3"
+  },
+  {
+    "chapter": "flagship-pair",
+    "step": 4,
+    "text": "Those memory numbers assume half-precision weights. They also reserve room for the cache at full context. 16 gigs for Medium, 8 for Small.",
+    "audio": "flagship-pair/4.mp3"
+  },
+  {
+    "chapter": "flagship-pair",
+    "step": 5,
+    "text": "Medium splits across 2, 4, or 8 GPUs. Small can also run on just one.",
+    "audio": "flagship-pair/5.mp3"
+  },
+  {
+    "chapter": "flagship-pair",
+    "step": 6,
+    "text": "You can deploy on-premise, or on AWS, Azure, Databricks, and Snowflake.",
+    "audio": "flagship-pair/6.mp3"
+  },
+  {
+    "chapter": "flagship-pair",
+    "step": 7,
+    "text": "Their own summary goes like this. Small beats much bigger general models on MedHELM. Medium is their best, number one in the comparison.",
+    "audio": "flagship-pair/7.mp3"
+  },
+  {
+    "chapter": "small-models",
+    "step": 1,
+    "text": "There's also a whole shelf of smaller models. Most are one to ten billion parameters.",
+    "audio": "small-models/1.mp3"
+  },
+  {
+    "chapter": "small-models",
+    "step": 2,
+    "text": "They're quantized. Many run on a plain CPU, no GPU needed. A GPU just makes them faster.",
+    "audio": "small-models/2.mp3"
+  },
+  {
+    "chapter": "small-models",
+    "step": 3,
+    "text": "The biggest is MedM v3, at fourteen billion parameters. It needs 24 gigs of GPU memory. It handles summaries, Q&A, RAG, and chat.",
+    "audio": "small-models/3.mp3"
+  },
+  {
+    "chapter": "small-models",
+    "step": 4,
+    "text": "Then come the specialists. The NER models pull medical terms out of text and link them.",
+    "audio": "small-models/4.mp3"
+  },
+  {
+    "chapter": "small-models",
+    "step": 5,
+    "text": "One version of NER reads clinical trial eligibility rules.",
+    "audio": "small-models/5.mp3"
+  },
+  {
+    "chapter": "small-models",
+    "step": 6,
+    "text": "Text2SOAP turns a messy note into a SOAP summary. Subjective, Objective, Assessment, Plan.",
+    "audio": "small-models/6.mp3"
+  },
+  {
+    "chapter": "small-models",
+    "step": 7,
+    "text": "There's a RAG model, built only to be the LLM inside a retrieval pipeline.",
+    "audio": "small-models/7.mp3"
+  },
+  {
+    "chapter": "small-models",
+    "step": 8,
+    "text": "And two vision models, at 3B and 2B. They read images and pull out structured medical entities.",
+    "audio": "small-models/8.mp3"
+  },
+  {
+    "chapter": "small-models",
+    "step": 9,
+    "text": "They plug into the Healthcare NLP library like any other component. And they're covered by that same license.",
+    "audio": "small-models/9.mp3"
+  },
+  {
+    "chapter": "small-models",
+    "step": 10,
+    "text": "Context windows run from 32K up to 131K tokens. There's a Colab notebook if you want to poke at them.",
+    "audio": "small-models/10.mp3"
+  },
+  {
+    "chapter": "openmed",
+    "step": 1,
+    "text": "Now the benchmarks, starting with OpenMed.",
+    "audio": "openmed/1.mp3"
+  },
+  {
+    "chapter": "openmed",
+    "step": 2,
+    "text": "It's eight multiple-choice test sets. MedQA, PubMedQA, and six medical subjects from MMLU.",
+    "audio": "openmed/2.mp3"
+  },
+  {
+    "chapter": "openmed",
+    "step": 3,
+    "text": "Medical LLM Medium averages 93.99.",
+    "audio": "openmed/3.mp3"
+  },
+  {
+    "chapter": "openmed",
+    "step": 4,
+    "text": "GPT 5.5 is at 93.28, Claude Opus 4.8 at 93.21, and Gemini 3.5 Flash at 92.94.",
+    "audio": "openmed/4.mp3"
+  },
+  {
+    "chapter": "openmed",
+    "step": 5,
+    "text": "So Medium is on top. By about seven tenths of a point.",
+    "audio": "openmed/5.mp3"
+  },
+  {
+    "chapter": "openmed",
+    "step": 6,
+    "text": "Look closer, and Medium trails on four of the eight subjects. On College Biology, the frontier models hit 99.3. Medium gets 94.3.",
+    "audio": "openmed/6.mp3"
+  },
+  {
+    "chapter": "openmed",
+    "step": 7,
+    "text": "On Medical Genetics, the frontier models score a perfect 100. Medium gets 99.",
+    "audio": "openmed/7.mp3"
+  },
+  {
+    "chapter": "openmed",
+    "step": 8,
+    "text": "Where Medium really pulls ahead is PubMedQA. It scores 82, while the frontier sits between 74 and 76.5.",
+    "audio": "openmed/8.mp3"
+  },
+  {
+    "chapter": "openmed",
+    "step": 9,
+    "text": "On MedQA the lead is smaller, 96.2 against 95.",
+    "audio": "openmed/9.mp3"
+  },
+  {
+    "chapter": "openmed",
+    "step": 10,
+    "text": "And Small? It averages 90.63. For a model that fits on one GPU, that's close.",
+    "audio": "openmed/10.mp3"
+  },
+  {
+    "chapter": "medhelm",
+    "step": 1,
+    "text": "OpenMed is exam questions. MedHELM is closer to real clinical work.",
+    "audio": "medhelm/1.mp3"
+  },
+  {
+    "chapter": "medhelm",
+    "step": 2,
+    "text": "It has thirteen tasks. They cover documentation, medical coding, safety, patient dialogue, and reasoning.",
+    "audio": "medhelm/2.mp3"
+  },
+  {
+    "chapter": "medhelm",
+    "step": 3,
+    "text": "The headline score is mean win rate. Roughly, how often a model beats the others, task by task.",
+    "audio": "medhelm/3.mp3"
+  },
+  {
+    "chapter": "medhelm",
+    "step": 4,
+    "text": "Medium gets 77.78. That's the best of every model tested. GPT 5.5 is next, at 73.56.",
+    "audio": "medhelm/4.mp3"
+  },
+  {
+    "chapter": "medhelm",
+    "step": 5,
+    "text": "Medium takes the top score on 12 of the 13 tasks. Some of those wins are by a tenth of a point.",
+    "audio": "medhelm/5.mp3"
+  },
+  {
+    "chapter": "medhelm",
+    "step": 6,
+    "text": "Its biggest gap is clinical error detection. On Medec, Medium scores 85. The best frontier model gets 70. That's 15 points.",
+    "audio": "medhelm/6.mp3"
+  },
+  {
+    "chapter": "medhelm-edges",
+    "step": 1,
+    "text": "Medication questions, plus 9.5. Research reading on PubMedQA, plus 6.",
+    "audio": "medhelm-edges/1.mp3"
+  },
+  {
+    "chapter": "medhelm-edges",
+    "step": 2,
+    "text": "On Med-Hallu, the hallucination test, Medium scores 96. Small scores 95. The frontier tops out at 92.",
+    "audio": "medhelm-edges/2.mp3"
+  },
+  {
+    "chapter": "medhelm-edges",
+    "step": 3,
+    "text": "So which task did it lose? RaceBias. Medium gets 88. All three frontier models get 91.",
+    "audio": "medhelm-edges/3.mp3"
+  },
+  {
+    "chapter": "medhelm-edges",
+    "step": 4,
+    "text": "If bias testing matters for your rollout, remember that one.",
+    "audio": "medhelm-edges/4.mp3"
+  },
+  {
+    "chapter": "medhelm-edges",
+    "step": 5,
+    "text": "Small lands at 70.95. That's under all three frontier models. So that line about beating bigger models needs an asterisk.",
+    "audio": "medhelm-edges/5.mp3"
+  },
+  {
+    "chapter": "safety",
+    "step": 1,
+    "text": "Now step back and look at averages.",
+    "audio": "safety/1.mp3"
+  },
+  {
+    "chapter": "safety",
+    "step": 2,
+    "text": "On OpenMed, the three frontier models average 93.14. Medium gets 93.99.",
+    "audio": "safety/2.mp3"
+  },
+  {
+    "chapter": "safety",
+    "step": 3,
+    "text": "On MedHELM, the frontier averages 72.41. Medium gets 77.78. That gap is much wider.",
+    "audio": "safety/3.mp3"
+  },
+  {
+    "chapter": "safety",
+    "step": 4,
+    "text": "Then there's red-teaming. A thousand adversarial questions, across 148 medical categories.",
+    "audio": "safety/4.mp3"
+  },
+  {
+    "chapter": "safety",
+    "step": 5,
+    "text": "Medium passed about 940. That's 94 percent.",
+    "audio": "safety/5.mp3"
+  },
+  {
+    "chapter": "safety",
+    "step": 6,
+    "text": "The frontier trails. GPT 5.5 passed 850, Claude Opus 4.8 passed 830, and Gemini 3.5 Flash passed 790.",
+    "audio": "safety/6.mp3"
+  },
+  {
+    "chapter": "safety",
+    "step": 7,
+    "text": "Their read on it: a smaller model came out as the most robust in this test. Small's result isn't reported.",
+    "audio": "safety/7.mp3"
+  },
+  {
+    "chapter": "safety",
+    "step": 8,
+    "text": "On hallucination, both of their models beat every frontier model. The vendor calls that the metric that decides clinical safety.",
+    "audio": "safety/8.mp3"
+  },
+  {
+    "chapter": "vision-ocr",
+    "step": 1,
+    "text": "The same page covers a second family. Vision OCR.",
+    "audio": "vision-ocr/1.mp3"
+  },
+  {
+    "chapter": "vision-ocr",
+    "step": 2,
+    "text": "Same idea here. For document pipelines, a task-specific OCR model should beat a general one.",
+    "audio": "vision-ocr/2.mp3"
+  },
+  {
+    "chapter": "vision-ocr",
+    "step": 3,
+    "text": "Two jobs matter most. Tie every word to an exact box on the page. And turn a page into clean, schema-valid JSON.",
+    "audio": "vision-ocr/3.mp3"
+  },
+  {
+    "chapter": "vision-ocr",
+    "step": 4,
+    "text": "Vision OCR LLM does the first job. It's the grounding specialist. About 6 gigs of GPU memory, with a 32K context.",
+    "audio": "vision-ocr/4.mp3"
+  },
+  {
+    "chapter": "vision-ocr",
+    "step": 5,
+    "text": "Vision OCR Structured LLM does the second. Document in, JSON out. About 32 gigs, with a 128K context.",
+    "audio": "vision-ocr/5.mp3"
+  },
+  {
+    "chapter": "vision-ocr",
+    "step": 6,
+    "text": "Those are worst-case numbers at max context. A typical OCR page is only around 8K tokens.",
+    "audio": "vision-ocr/6.mp3"
+  },
+  {
+    "chapter": "vision-ocr",
+    "step": 7,
+    "text": "At that size, Vision OCR LLM needs about 3 gigs, and the Structured one about 19. One GPU either way.",
+    "audio": "vision-ocr/7.mp3"
+  },
+  {
+    "chapter": "vision-ocr",
+    "step": 8,
+    "text": "And again, the point is privacy. Patient records, PII and PHI stay inside your own infrastructure.",
+    "audio": "vision-ocr/8.mp3"
+  },
+  {
+    "chapter": "ocr-tables-grounding",
+    "step": 1,
+    "text": "Take tables. They pulled 50 from PubTabNet, balanced from simple to very dense.",
+    "audio": "ocr-tables-grounding/1.mp3"
+  },
+  {
+    "chapter": "ocr-tables-grounding",
+    "step": 2,
+    "text": "The metric is TEDS-S. It checks whether the table's structure came out right.",
+    "audio": "ocr-tables-grounding/2.mp3"
+  },
+  {
+    "chapter": "ocr-tables-grounding",
+    "step": 3,
+    "text": "Vision OCR LLM scores 0.784. The best frontier model, GPT 5.5, gets 0.704. That's eight points clear.",
+    "audio": "ocr-tables-grounding/3.mp3"
+  },
+  {
+    "chapter": "ocr-tables-grounding",
+    "step": 4,
+    "text": "For grounding, they used all 50 test forms from FUNSD.",
+    "audio": "ocr-tables-grounding/4.mp3"
+  },
+  {
+    "chapter": "ocr-tables-grounding",
+    "step": 5,
+    "text": "Each predicted box has to match a real region, with an overlap score of at least 0.78.",
+    "audio": "ocr-tables-grounding/5.mp3"
+  },
+  {
+    "chapter": "ocr-tables-grounding",
+    "step": 6,
+    "text": "Then they check how accurately the text inside that box was read.",
+    "audio": "ocr-tables-grounding/6.mp3"
+  },
+  {
+    "chapter": "ocr-tables-grounding",
+    "step": 7,
+    "text": "Vision OCR LLM gets 0.938. That's ahead of Claude at 0.921, and GPT at 0.848.",
+    "audio": "ocr-tables-grounding/7.mp3"
+  },
+  {
+    "chapter": "ocr-tables-grounding",
+    "step": 8,
+    "text": "But Gemini scores higher, at 0.968.",
+    "audio": "ocr-tables-grounding/8.mp3"
+  },
+  {
+    "chapter": "ocr-tables-grounding",
+    "step": 9,
+    "text": "Their explanation: this metric only rewards tightly matched regions. So a high score might cover just part of the page.",
+    "audio": "ocr-tables-grounding/9.mp3"
+  },
+  {
+    "chapter": "ocr-tables-grounding",
+    "step": 10,
+    "text": "They say theirs covers the full page. But they don't publish coverage numbers.",
+    "audio": "ocr-tables-grounding/10.mp3"
+  },
+  {
+    "chapter": "ocr-json",
+    "step": 1,
+    "text": "And for JSON, they used 100 documents from the OmniOCR benchmark.",
+    "audio": "ocr-json/1.mp3"
+  },
+  {
+    "chapter": "ocr-json",
+    "step": 2,
+    "text": "Vision OCR Structured LLM gets 0.708 field accuracy. That's ahead of GPT at 0.623, and Claude at 0.643.",
+    "audio": "ocr-json/2.mp3"
+  },
+  {
+    "chapter": "ocr-json",
+    "step": 3,
+    "text": "Gemini wins this one too, at 0.813.",
+    "audio": "ocr-json/3.mp3"
+  },
+  {
+    "chapter": "ocr-json",
+    "step": 4,
+    "text": "The OCR tests ran on their own harness. Same prompt for every model, and zero failed documents.",
+    "audio": "ocr-json/4.mp3"
+  },
+  {
+    "chapter": "takeaway",
+    "step": 1,
+    "text": "So, on medical text, Medium beats the frontier on both benchmarks. The wide lead is on MedHELM, the clinical-work one.",
+    "audio": "takeaway/1.mp3"
+  },
+  {
+    "chapter": "takeaway",
+    "step": 2,
+    "text": "On OCR, it's mixed. Tables are a clear win. On grounding and JSON, Gemini is still ahead.",
+    "audio": "takeaway/2.mp3"
+  },
+  {
+    "chapter": "takeaway",
+    "step": 3,
+    "text": "Where they run hasn't changed. Inside your own walls, and for most of them, on a single GPU.",
+    "audio": "takeaway/3.mp3"
+  },
+  {
+    "chapter": "takeaway",
+    "step": 4,
+    "text": "Keep in mind these are the vendor's own numbers. If you're choosing for a hospital, run the same tests on your own data.",
+    "audio": "takeaway/4.mp3"
+  },
+  {
+    "chapter": "takeaway",
+    "step": 5,
+    "text": "The docs link is in the description. Grab the Colab notebook and try the small models yourself.",
+    "audio": "takeaway/5.mp3"
+  }
+]
